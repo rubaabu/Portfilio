@@ -81,7 +81,7 @@ if(isset($_POST['login'])) {
 <?php require 'header.php'; ?>
 </head>
 <body>
-<a href="register.php">register</a>
+<a class='btn btn-dark'href="register.php">register</a>
 <h2>Login</h2>
 
     <form method="post"  action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete= "off">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 17, 2019 at 12:39 PM
+-- Generation Time: Sep 17, 2019 at 09:14 PM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.6
 
@@ -254,17 +254,19 @@ CREATE TABLE `requests` (
   `request_type` enum('buy','sale','pay') NOT NULL,
   `request_message` varchar(250) NOT NULL,
   `request_date` datetime NOT NULL,
-  `fk_user_from` int(11) NOT NULL
+  `fk_user_from` int(11) NOT NULL,
+  `fk_status_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `requests`
 --
 
-INSERT INTO `requests` (`request_id`, `request_type`, `request_message`, `request_date`, `fk_user_from`) VALUES
-(1, 'buy', 'the sections need new raw material', '2019-09-12 00:44:00', 6),
-(2, 'buy', 'wen need more plastic', '2019-09-26 00:00:00', 6),
-(3, 'pay', 'we need 5000€ for the plastic', '2019-09-26 00:00:00', 10);
+INSERT INTO `requests` (`request_id`, `request_type`, `request_message`, `request_date`, `fk_user_from`, `fk_status_id`) VALUES
+(1, 'buy', 'the sections need new raw material', '2019-09-12 00:44:00', 6, 0),
+(2, 'buy', 'wen need more plastic', '2019-09-26 00:00:00', 6, 0),
+(3, 'pay', 'we need 5000€ for the plastic', '2019-09-26 00:00:00', 10, 0),
+(4, 'sale', 'there is a lot of products ', '2019-09-12 00:00:00', 9, 2);
 
 -- --------------------------------------------------------
 
@@ -308,7 +310,8 @@ CREATE TABLE `sections` (
 --
 
 INSERT INTO `sections` (`section_id`, `section_name`, `section_description`, `fk_raw_material_id`, `fk_user_id`, `fk_employee_id`, `fk_machine`) VALUES
-(1, 'Convert', 'Convert raw materials into manufactured materials', 1, 9, 8, 1);
+(1, 'Convert', 'Convert raw materials into manufactured materials', 1, 9, 8, 1),
+(2, 'section 2', 'the second section for Metal', 1, 12, 8, 2);
 
 -- --------------------------------------------------------
 
@@ -360,14 +363,15 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `fullname`, `date_of_birth`, `email`, `password`, `telefon`, `address`, `gender`, `status`, `children`, `nationality`, `education`, `date_of_start`, `role`) VALUES
-(2, 'rubaaboissa', '2019-09-12', 'ruba@gmail.com', '123123', '125487875121', 'sfdvsfcvsfcvsvf', 'f', 'single', '', 'vfvv', 'fvfvf', '2019-09-13 11:15:17', 'user'),
-(5, 'Director', '2019-09-11', 'director@gmail.com', '123123', '0935074175', 'lalagasse wien,1050', 'm', 'Married', 'one', 'Austrian', 'engineer', '2019-09-12 11:19:57', 'director'),
-(6, 'the engineer', '2019-09-12', 'eng@gmail.com', '123123', '0935214785', 'enggasse wien1050', 'f', 'Married', 'two', 'syrien', 'engineer', '2019-09-12 11:20:04', 'eng'),
-(7, 'the dealer', '1996-06-14', 'dealer@gmail.com', '123123', '123734562', 'efgjaeljfgnal', 'm', 'Married', 'three', 'austrian', 'wirtschaft', '2019-09-16 10:47:42', 'dealer'),
+(2, 'rubaaboissa', '1997-10-17', 'user@gmail.com', '123123', '125487875121', 'reinprechtsdorfer strasse. 1050 vienna', 'f', 'single', 'Null', 'Syrien', 'Matura', '2019-09-17 19:13:51', 'user'),
+(5, 'Director', '1988-05-05', 'director@gmail.com', '123123', '0935074175', 'lalagasse wien,1050', 'm', 'Married', 'one', 'Austrian', 'Civil engineer', '2019-09-17 19:09:09', 'director'),
+(6, 'the engineer', '1991-01-03', 'eng@gmail.com', '123123', '0935214785', 'enggasse wien1050', 'f', 'Married', 'two', 'Austrian', 'Compute science engineer', '2019-09-17 19:09:55', 'eng'),
+(7, 'the dealer', '1996-06-14', 'dealer@gmail.com', '123123', '123734562', 'Germany', 'm', 'Married', 'three', 'Austrian', 'Economics', '2019-09-17 19:10:32', 'dealer'),
 (8, 'Worker', '2019-05-14', 'worker@gmail.com', '123123', '09358654785', 'starasse vienna', 'm', 'Married', 'three', 'austrian', 'HTL', '2019-09-14 16:15:46', 'user'),
-(9, 'manager', '2019-02-12', 'manager@gmail.com', '123123', '2347523462', 'austira graz', 'f', 'single', 'no', 'syrien', 'Bachelor degree ', '2019-09-14 16:17:21', 'user'),
-(10, 'accountant', '2017-10-18', 'acc@gmail.com', '123123', '234465475', 'germany', 'f', 'Married', 'four', 'german', 'master', '2019-09-14 16:18:43', 'acc'),
-(11, 'technicien', '1997-01-16', 'tech@gmail.com', '123123', '1234566782', 'Sweden', 'f', 'single', 'no', 'Sweden', 'matura', '2019-09-14 16:20:21', 'tech');
+(9, 'manager', '2019-02-12', 'manager@gmail.com', '123123', '2347523462', 'Graz', 'f', 'single', 'No Children', 'syrien', 'Bachelor degree ', '2019-09-17 19:11:12', 'manager'),
+(10, 'accountant', '2017-10-18', 'acc@gmail.com', '123123', '234465475', 'Berlin', 'f', 'Married', 'four', 'German', 'Economics Master', '2019-09-17 19:11:57', 'acc'),
+(11, 'technicien', '1997-01-16', 'tech@gmail.com', '123123', '1234566782', 'Sweden ', 'f', 'single', 'No children', 'Sweden', 'IT Bachelor ', '2019-09-17 19:12:46', 'tech'),
+(12, 'Manager2', '1997-09-02', 'manager2@gmail.com', '123123', '0935410601', 'Vienna 1100', 'm', 'single', 'Null', 'Syrian', 'Economics Degree', '2019-09-17 18:51:27', 'manager');
 
 --
 -- Indexes for dumped tables
@@ -547,7 +551,7 @@ ALTER TABLE `repository`
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
-  MODIFY `request_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `request_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `salary`
@@ -559,7 +563,7 @@ ALTER TABLE `salary`
 -- AUTO_INCREMENT for table `sections`
 --
 ALTER TABLE `sections`
-  MODIFY `section_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `section_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `show_requests`
@@ -571,7 +575,7 @@ ALTER TABLE `show_requests`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `user_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables

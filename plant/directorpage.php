@@ -3,15 +3,7 @@
 session_start();
 require 'db.php';
 
-// if (!isset($_SESSION['role'])) {
-//     header('Location: login.php');
-//   } else if ($_SESSION['role'] == 'user') {
-//     header('Location: landingpage.php');
-//   }  else if ($_SESSION['role'] == 'eng') {
-//     header('Location: engpage.php');
-//   } else if ($_SESSION['role'] == 'dealer') {
-//     header('Location: dealerpage.php');
-//   }
+
 
 if( !isset($_SESSION['user' ]) && !isset($_SESSION['director']) && !isset($_SESSION['eng']) ) {
     header("Location: login.php");
@@ -21,13 +13,21 @@ if( !isset($_SESSION['user' ]) && !isset($_SESSION['director']) && !isset($_SESS
    
    
    if(isset($_SESSION['director'])){
+      
      $var = $_SESSION['director'];
 
    } else if (isset($_SESSION['eng'])){
+        header('Location: engpage.php');
     $var = $_SESSION['eng'];
 
-   }
+   }else if (isset($_SESSION['dealer'])){
+    header('Location: dealerpage.php');
+    $var = $_SESSION['dealer'];
+
+}
    else {
+    header('Location: landingpage.php');
+
     $var = $_SESSION['user'];
 
    }
@@ -51,24 +51,26 @@ if( !isset($_SESSION['user' ]) && !isset($_SESSION['director']) && !isset($_SESS
 </head>
 <body>
 
-<a href ="logout.php?logout">Sign out</a><br><br>
+<a class='btn btn-blue'href ="logout.php?logout">Sign out</a><br><br>
 
-<a href="users.php">Users</a>
-<a href="employees.php">Employees</a>
-<a href="repository.php">Repositories</a>
-<a href="section.php">Sections</a>
-<a href="qmessage.php">Q messages</a>
+<a class='btn btn-dark'href="users.php">Users</a>
+<a class='btn btn-dark' href="employees.php">Employees</a>
+<a class='btn btn-dark'href="repository.php">Repositories</a>
+<a class='btn btn-dark'href="section.php">Sections</a>
+<a class='btn btn-dark'href="qmessage.php">Q messages</a>
+<a class='btn btn-dark'href="userprofile.php">My profile</a>
+
+<hr >
 
 
 
-
-
-
+<div class="container">
 <h3>the Requests</h3>
 
 <?php 
 $sql = "SELECT * FROM requests
-        JOIN users ON fk_user_from=user_id";
+        JOIN users ON fk_user_from=user_id
+        ";
         $result =mysqli_query($conn,$sql);
         if (!$result) {
             printf("Error: %s\n", mysqli_error($conn));
@@ -82,6 +84,8 @@ $sql = "SELECT * FROM requests
                 <span>Type:</span><?php echo $row['request_type'];?><br>
                 <span>message:</span><?php echo $row['request_message'];?><br>
                 <span>Date:</span><?php echo $row['request_date'];?><br>
+               
+            
 
 <hr>
 
@@ -113,6 +117,7 @@ $sql = "SELECT * FROM employment_app
                 <span>file:</span><?php echo $row['employment_file'];?><br>
                 <span>Date:</span><?php echo $row['employment_date'];?><br>
                 <hr>
+                
 
 
 
@@ -169,7 +174,7 @@ $sql = "SELECT * FROM employment_app
 
     
 
-    <button type ="submit" name="apply">hire</button>
+    <button type ="submit" class='btn btn-dark'name="apply">hire</button>
     
 </fieldset>
 
@@ -201,6 +206,11 @@ $sql = "SELECT * FROM employment_app
 <input type="text" name="amount" placeholder="€"/><br >
 <label>Date:</label>
 <input type="date" name="date" /><br >
+<button type ="submit" name="apply"class='btn btn-dark'>pay</button>
+
+</div>
+
+<hr >
 </body>
 
 

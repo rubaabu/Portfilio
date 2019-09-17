@@ -12,8 +12,11 @@ if( !isset($_SESSION['user' ]) && !isset($_SESSION['director']) && !isset($_SESS
    
    if(isset($_SESSION['director'])){
      $var = $_SESSION['director'];
+     header('Location: directorpage.php');
+
 
    } else if (isset($_SESSION['eng'])){
+       header('Location: engpage.php');
     $var = $_SESSION['eng'];
 
    }else if (isset($_SESSION['dealer'])){
@@ -22,6 +25,8 @@ if( !isset($_SESSION['user' ]) && !isset($_SESSION['director']) && !isset($_SESS
    }
    else {
     $var = $_SESSION['user'];
+    header('Location: landingpage.php');
+
 
    }
 
@@ -47,6 +52,8 @@ if( !isset($_SESSION['user' ]) && !isset($_SESSION['director']) && !isset($_SESS
    </head>
    <body>
 <a href ="logout.php?logout">Sign out</a><br><br>
+<a class='btn btn-dark'href="userprofile.php">My profile</a>
+
 
 
 <h3>the Requests from Engineers</h3>

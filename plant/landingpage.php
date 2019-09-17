@@ -37,7 +37,7 @@ if( !isset($_SESSION['user' ]) && !isset($_SESSION['director']) ) {
    </head>
    <body>
    <a  href="logout.php?logout" style=" color: #483D8B;">Sign Out</a><hr>
-   <a href="userprofile.php?userid">my profile</a>
+   <a class='btn btn-dark' href="userprofile.php?userid">my profile</a>
 
    <h2>Products</h2>
    <hr >
@@ -75,8 +75,8 @@ if( !isset($_SESSION['user' ]) && !isset($_SESSION['director']) ) {
     <input type="text" name="message" placeholder="enter the message" /><br >
     <input type="date" name="date" /><br >
 
-    <button type ="submit" name="send">send</button>
-    <a href= "landingpage.php"><button  type="button">Back</ button></a>
+    <button class='btn btn-dark' type ="submit" name="send">send</button>
+    <a href= "landingpage.php"><button class='btn btn-dark' type="button">Back</ button></a>
     </form>
 </fieldset>
 
@@ -114,8 +114,8 @@ if( !isset($_SESSION['user' ]) && !isset($_SESSION['director']) ) {
 
     <input type="file" name="file" /><br >
 
-    <button type ="submit" name="apply">send</button>
-    <a href= "landingpage.php"><button  type="button">Back</ button></a>
+    <button class='btn btn-dark'type ="submit" name="apply">send</button>
+    <a href= "landingpage.php"><button class='btn btn-dark' type="button">Back</ button></a>
     </form>
 </fieldset>
 

@@ -142,16 +142,6 @@ class DBsetup {
 
 
 
-        public function getUserData($user_id){
-
-            $sql ="SELECT * FROM users WHERE user_id = '".$user_id."';";
-
-            $this->connect();
-            $result =mysqli_query($this->conn,$sql);
-            $this->disconnect();
-            $data =$result->fetch_all(MYSQLI_ASSOC);
-
-            return $data[0];
-        }
+       
 
     }
