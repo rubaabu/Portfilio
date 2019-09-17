@@ -3,18 +3,29 @@ ob_start();
 session_start();
 require 'db.php';
 
-if( !isset($_SESSION['user' ]) && !isset($_SESSION['director']) ) {
+if( !isset($_SESSION['user' ]) && !isset($_SESSION['director'])  && !isset($_SESSION['eng']) && !isset($_SESSION['dealer'])) {
     header("Location: login.php");
     exit;
    }
   
    if(isset($_SESSION['director'])){
-     $var = $_SESSION['director'];
+      header('Location: directorpage.php');
+      $var = $_SESSION['director'];
 
-   }else {
-     $var = $_SESSION['user'];
+  } else if (isset($_SESSION['eng'])){
+       header('Location: engpage.php');
+       $var = $_SESSION['eng'];
 
-   } 
+  }else if (isset($_SESSION['dealer'])){
+        header('Location: dealerpage.php');
+        $var = $_SESSION['dealer'];
+
+} else {
+   header('Location: landingpage.php');
+
+   $var = $_SESSION['user'];
+
+  }
 
    //select the user that he is logged in
    $result=mysqli_query($conn, "SELECT * FROM users WHERE user_id=".$var);

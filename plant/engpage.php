@@ -43,14 +43,39 @@ if( !isset($_SESSION['user' ]) && !isset($_SESSION['director']) && !isset($_SESS
        <title>Engineers page</title>
    </head>
    <body>
-   <a class='btn btn-dark'href ="logout.php?logout">Sign out</a><br><br>
-   <a class='btn btn-dark' href="repository.php">Repositories</a>
-   <a class='btn btn-dark'href="machine.php">Machine</a>
-   <a class='btn btn-dark'href="userprofile.php">My profile</a>
-   <a class='btn btn-dark'href="managers.php">Managers</a>
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="userprofile.php">My profile</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="navbar navbar-light"  id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="navbar navbar-light" >
+        <a class="nav-link" href="managers.php">Mnagaers</a>
+      </li>
+      <li class="navbar navbar-light" >
+        <a class="nav-link" href="repository.php">Repositories</a>
+      </li>
+      <li class="navbar navbar-light" >
+        <a class="nav-link disabled" href="machine.php">Machine</a>
+      </li>
+      <li class="navbar navbar-light" >
+        <a class="nav-link disabled" href="section.php">Sections</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+   <a class="btn btn-secondary" href ="logout.php?logout">Sign out</a><br><br>
+   <!-- <a class='btn btn-dark' href="repository.php">Repositories</a> -->
+   <!-- <a class='btn btn-dark'href="machine.php">Machine</a> -->
+   <!-- <a class='btn btn-dark'href="userprofile.php">My profile</a> -->
+   <!-- <a class='btn btn-dark'href="managers.php">Managers</a> -->
 
 
-<a class='btn btn-dark'href="section.php">Sections</a>
+<!-- <a class='btn btn-dark'href="section.php">Sections</a> -->
 
 <h3>the Requests</h3>
 

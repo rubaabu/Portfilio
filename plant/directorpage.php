@@ -5,13 +5,12 @@ require 'db.php';
 
 
 
-if( !isset($_SESSION['user' ]) && !isset($_SESSION['director']) && !isset($_SESSION['eng']) ) {
+if( !isset($_SESSION['user' ]) && !isset($_SESSION['director']) && !isset($_SESSION['eng']) && !isset($_SESSION['dealer']) ) {
     header("Location: login.php");
     exit;
     }
 
-   
-   
+
    if(isset($_SESSION['director'])){
       
      $var = $_SESSION['director'];
@@ -50,15 +49,37 @@ if( !isset($_SESSION['user' ]) && !isset($_SESSION['director']) && !isset($_SESS
 <?php require 'header.php'; ?>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="userprofile.php">My profile</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="users.php">Users <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="employees.php">Employees</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="section.php">Sections</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="repository.php">Repositories</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="qmessage.php">Qmessages</a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li> -->
+    </ul>
+  </div>
+</nav>
 
-<a class='btn btn-blue'href ="logout.php?logout">Sign out</a><br><br>
+<a class="btn btn-secondary" href ="logout.php?logout">Sign out</a><br><br>
 
-<a class='btn btn-dark'href="users.php">Users</a>
-<a class='btn btn-dark' href="employees.php">Employees</a>
-<a class='btn btn-dark'href="repository.php">Repositories</a>
-<a class='btn btn-dark'href="section.php">Sections</a>
-<a class='btn btn-dark'href="qmessage.php">Q messages</a>
-<a class='btn btn-dark'href="userprofile.php">My profile</a>
 
 <hr >
 
