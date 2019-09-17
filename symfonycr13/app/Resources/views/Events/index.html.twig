@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+{% block javascripts %}
+<script>
+function myFunction() {
+  // Declare variables 
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("custab");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    } 
+  }
+}
+</script>
+{% endblock %}
+{% block stylesheets %}
+<style>
+.custab{
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 5% 0;
+    box-shadow: 3px 3px 2px #ccc;
+    transition: 0.5s;
+    }
+.custab:hover{
+    box-shadow: 3px 3px 0px transparent;
+    transition: 0.5s;
+    }
+#myInput {
+  background-image: url('/css/searchicon.png'); 
+  background-position: 10px 12px; /* Position the search icon */
+  background-repeat: no-repeat; /* Do not repeat the icon image */
+  width: 100%; /* Full-width */
+  font-size: 16px; /* Increase font-size */
+  padding: 12px 20px 12px 40px; /* Add some padding */
+  border: 1px solid #ddd; /* Add a grey border */
+  margin-bottom: 12px; /* Add some space below the input */
+}
+
+</style>
+{% endblock %}
+
+ 
+{% block body %}
+
+
+<div class="container">
+    <div class="row col-md-6 col-md-offset-2 custyle">
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Events..">
+    <table class="table table-striped custab" id="custab">
+    <thead>
+    <b> Latest Events</b>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th class="text-center">do what you want with them</th>
+        </tr>
+    </thead>
+    {% for event in events %}
+    <tbody>
+            <tr>
+                <th scope="row">{{event.id}}</th>
+                <td>{{event.name}}</td>
+                <td>{{event.date|date('F j, Y, g:i a')}}</td>
+                <td class="text-center">
+                	<a href="/Events/details/{{event.id}}" class="btn btn-success btn-xs">View</a>
+                	<a class='btn btn-info btn-xs' href="/Events/edit/{{event.id}}"><span class="glyphicon glyphicon-edit"></span> Edit</a> 
+                	<a href="/Events/delete/{{event.id}}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>Del</a></td>
+            </tr>
+            
+    {% endfor %}
+    </tbody>
+    </table>
+    <a class='btn btn-info btn-xs' href="/Events/add"> Add Event</a>
+    </div>
+</div>
+{% endblock %}
+
+
