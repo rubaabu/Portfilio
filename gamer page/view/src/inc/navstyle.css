@@ -1,0 +1,13 @@
+#navbar{
+    background-color: var(--dark);
+}
+
+#navbar a{
+    font-size: 1.5vw;
+    color: var(--aqua);
+}
+#navbar a:hover{    
+    color: var(--aqua);
+    font-weight: bold;
+    text-decoration: none;    
+}

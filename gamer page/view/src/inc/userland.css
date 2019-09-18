@@ -1,0 +1,128 @@
+:root {
+    --dark: #222831;
+    --grey: #393e46;
+    --aqua: #00adb5;
+    --lgrey: #eeeeee;
+  }
+body {
+  overflow-x: hidden;
+}
+
+#sidebar-wrapper {
+
+  height: 71vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-right: -15rem;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
+#sidebar-wrapper a{
+  text-decoration: none;
+  color: var(--dark);
+}
+#sidebar-wrapper .list-group {
+  width: 12rem;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-right: 0;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-right: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-right: -8.5rem;
+  }
+}
+
+.friend {
+    width: 40px;
+    height: 40px;
+}
+
+.on{
+    color: green;
+}
+.off{
+    color: var(--dark);
+}
+
+#usermessages {
+    height: 71vh;
+    width: 100%;
+    overflow: auto;
+    
+}
+/*#communities {
+    height: 71vh;
+    overflow: auto;   
+
+} */
+
+#searchpanel{
+  height: 71vh; 
+}
+#panel{
+  height: 63vh;
+  overflow-x:hidden;
+  overflow-y: auto;
+}
+
+#boxuser {
+  
+    width: 100%;
+    min-height: 20vh;
+    max-height: 34vh;
+    margin: 0 auto;
+    overflow: auto;
+    border: 1px solid var(--lgrey);
+    padding: 2px;
+    text-align: justify;
+    background: transparent;
+    position: relative;
+    color: var(--lgrey);
+    
+}
+
+/* Scroll bar webkit */
+::-webkit-scrollbar {
+    width: 10px;
+}
+ 
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    background: var(--aqua); 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+    background: var(--aqua); 
+}

@@ -1,0 +1,268 @@
+:root {
+    --dark: #222831;
+    --grey: #393e46;
+    --aqua: #00adb5;
+    --lgrey: #eeeeee;
+  }
+  /* Scroll bar webkit */
+::-webkit-scrollbar {
+    width: 10px;
+}
+ 
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    background: var(--aqua); 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+    background: var(--aqua); 
+}
+
+
+body {
+    background-color: var(--grey);
+}
+
+#footer{
+    background-color: var(--dark);
+    position: fixed;
+    bottom: 0;    
+    width: 100%;
+    height: 8%;    
+}
+#footer a{
+    color: white;
+}
+#footer a:hover{
+    color: var(--aqua);
+}
+.icons{
+    font-size: 2vw;
+    
+}
+#footerregulator{
+    margin-bottom: 40px;
+}
+
+.feat{
+    background-color: var(--dark);
+    color: var(--lgrey);
+}
+.carousel img {
+    object-fit: cover;
+}
+
+.link a{
+    text-decoration-color: none;
+    color: var(--dark);
+
+}
+#generalinfo {
+    background-color: var(--dark);
+}
+
+#communityinfo{
+    background-color: var(--dark);
+    color: var(--lgrey);
+    width:100%; 
+    height:80vh;
+    overflow: auto;
+    position: relative;
+}
+
+.abs{
+    position: absolute;
+}
+.rel{
+    position: relative;
+}
+
+.coverbtn{
+    bottom: 0;
+    left: 50%;
+}
+
+#box {
+    width: 100%;
+    min-height: 10vh;
+    max-height: 33vh;
+    margin: 0 auto;
+    overflow: auto;
+    border: 1px solid var(--lgrey);
+    padding: 2px;
+    text-align: justify;
+    background: transparent;
+    position: relative;
+    }
+#friendrequestbox{
+    width: 100%;
+    min-height: 10vh;
+    max-height: 46vh;
+    margin: 0 auto;
+    overflow: auto;
+    border: 1px solid var(--lgrey);
+    padding: 2px;
+    text-align: justify;
+    background: transparent;
+    position: relative;
+}
+#memberrequestbox{
+    width: 100%;
+    min-height: 10vh;
+    max-height: 20vh;
+    margin: 0 auto;
+    overflow: auto;
+    border: 1px solid var(--lgrey);
+    padding: 2px;
+    text-align: justify;
+    background: transparent;
+    position: relative;
+}
+#box a {
+    text-decoration: none;
+}
+#usermessagebox{
+    width: 100%;
+    min-height: 10vh;
+    max-height: 71vh;
+    margin: 0 auto;
+    overflow: auto;
+    border: 1px solid var(--lgrey);
+    padding: 2px;
+    text-align: justify;
+    background: transparent;
+    position: relative;
+
+}
+#gamesbox {
+    width: 100%;
+    max-height: 15vh;
+    margin: 0 auto;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    border: 1px solid var(--lgrey);
+    padding: 2px;
+    text-align: justify;
+    background: transparent;
+    text-decoration: none;
+    position: relative; 
+}
+
+.inline {
+    display: inline-block;
+}
+
+#memberbox{
+    width: 100%;
+    max-height: 20vh;
+    margin: 0 auto;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    border: 1px solid var(--lgrey);
+    padding: 2px;
+    text-align: justify;
+    background: transparent;
+    text-decoration: none;
+    position: relative;
+}
+#editbox {
+    width: 100%;
+    height: 30vh;
+    margin: 0 auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    white-space: nowrap;
+    border: 1px solid var(--lgrey);
+    padding: 2px;
+    text-align: justify;
+    background: transparent;
+    text-decoration: none;
+    position: relative;
+}
+#descrbox {
+    width: 100%;
+    
+    max-height: 8vh;
+    margin: 0 auto;
+    overflow: auto;
+    border: 1px solid var(--lgrey);
+    padding: 2px;
+    text-align: justify;
+    background: transparent;
+    text-decoration: none;
+    position: relative;
+}
+#usercommunities{
+    width: 100%;
+    min-height: 10vh;
+    max-height: 15vh;
+    margin: 0 auto;
+    overflow: auto;
+    border: 1px solid var(--lgrey);
+    padding: 2px;
+    text-align: justify;
+    background: transparent;
+    text-decoration: none;
+    position: relative;
+}
+#commlist{
+    width: 100%;
+    min-height: 20vh;
+    max-height: 71vh;
+    margin: 0 auto;
+    overflow: auto;
+    padding: 2px;
+    text-align: justify;
+    background: transparent;
+    position: relative;
+    text-decoration: none;
+
+}
+#userbadge{
+    border: 1px solid white;
+    height: 15vh;
+}
+
+.x {
+    position: absolute;
+    right: 0;    
+}
+.y {
+    position: absolute;
+    right: 33px;    
+}
+.friend {
+    width: 40px;
+    height: 40px;
+}
+
+#supportmessages {
+    height: 80vh;
+    overflow: auto;
+
+}
+#personalinfo{
+       height: 80vh;
+        overflow: auto;
+}
+#searchpanel{
+       height: 80vh;
+        overflow: auto;
+}
+
+@media only screen and (max-width: 760px) {
+    .font {
+        font-size: 20px !important;
+    }
+}
