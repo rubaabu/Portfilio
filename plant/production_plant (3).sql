@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 17, 2019 at 09:14 PM
+-- Generation Time: Sep 18, 2019 at 02:03 PM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.6
 
@@ -41,7 +41,8 @@ CREATE TABLE `buy` (
 
 INSERT INTO `buy` (`buy_id`, `fk_user_from`, `buy_message`, `buy_date`) VALUES
 (20, 2, 'product A', '2019-09-12'),
-(21, 2, 'Product B', '2019-09-18');
+(21, 2, 'Product B', '2019-09-18'),
+(22, 2, 'Product B', '2019-09-13');
 
 -- --------------------------------------------------------
 
@@ -67,7 +68,8 @@ INSERT INTO `employees` (`employee_id`, `employee_date`, `employee_status`, `fk_
 (5, '2019-09-14 16:14:01', 'dealer', 7),
 (6, '2019-09-14 16:20:47', '', 11),
 (7, '2019-09-14 16:20:55', 'accountant', 10),
-(8, '2019-09-14 16:21:02', 'worker', 8);
+(8, '2019-09-14 16:21:02', 'worker', 8),
+(9, '2019-09-18 11:30:39', 'manager', 12);
 
 -- --------------------------------------------------------
 
@@ -89,7 +91,9 @@ CREATE TABLE `employment_app` (
 --
 
 INSERT INTO `employment_app` (`employment_id`, `employment_message`, `employment_file`, `fk_user_from`, `employment_date`, `fk_type_id`) VALUES
-(18, 'srdgfsf', '20131201_153749.jpg', 2, '2019-09-13 11:09:39', 2);
+(18, 'srdgfsf', '20131201_153749.jpg', 2, '2019-09-13 11:09:39', 2),
+(19, 'i want to have a appointment with you to see my projects', 'landingpage.php', 2, '2019-09-18 12:01:00', 1),
+(20, 'i want to have a appointment with you to see my projects', 'landingpage.php', 2, '2019-09-18 12:01:53', 1);
 
 -- --------------------------------------------------------
 
@@ -255,18 +259,19 @@ CREATE TABLE `requests` (
   `request_message` varchar(250) NOT NULL,
   `request_date` datetime NOT NULL,
   `fk_user_from` int(11) NOT NULL,
-  `fk_status_id` int(11) NOT NULL
+  `fk_status_id` int(11) NOT NULL,
+  `request_status` enum('Open','Accepted','Dismissed','') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `requests`
 --
 
-INSERT INTO `requests` (`request_id`, `request_type`, `request_message`, `request_date`, `fk_user_from`, `fk_status_id`) VALUES
-(1, 'buy', 'the sections need new raw material', '2019-09-12 00:44:00', 6, 0),
-(2, 'buy', 'wen need more plastic', '2019-09-26 00:00:00', 6, 0),
-(3, 'pay', 'we need 5000€ for the plastic', '2019-09-26 00:00:00', 10, 0),
-(4, 'sale', 'there is a lot of products ', '2019-09-12 00:00:00', 9, 2);
+INSERT INTO `requests` (`request_id`, `request_type`, `request_message`, `request_date`, `fk_user_from`, `fk_status_id`, `request_status`) VALUES
+(1, 'buy', 'the sections need new raw material', '2019-09-12 00:44:00', 6, 0, 'Open'),
+(2, 'buy', 'wen need more plastic', '2019-09-26 00:00:00', 6, 0, 'Open'),
+(3, 'pay', 'we need 5000€ for the plastic', '2019-09-26 00:00:00', 10, 0, 'Open'),
+(4, 'sale', 'there is a lot of products ', '2019-09-12 00:00:00', 9, 2, 'Open');
 
 -- --------------------------------------------------------
 
@@ -287,7 +292,8 @@ CREATE TABLE `salary` (
 --
 
 INSERT INTO `salary` (`salary_id`, `fk_user_from`, `fk_user_to`, `salary_amount`, `salary_date`) VALUES
-(1, 5, 6, '2000 €', '2019-09-30');
+(1, 5, 6, '2000 €', '2019-09-30'),
+(5, 5, 8, '2000€', '2019-09-25');
 
 -- --------------------------------------------------------
 
@@ -363,7 +369,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `fullname`, `date_of_birth`, `email`, `password`, `telefon`, `address`, `gender`, `status`, `children`, `nationality`, `education`, `date_of_start`, `role`) VALUES
-(2, 'rubaaboissa', '1997-10-17', 'user@gmail.com', '123123', '125487875121', 'reinprechtsdorfer strasse. 1050 vienna', 'f', 'single', 'Null', 'Syrien', 'Matura', '2019-09-17 19:13:51', 'user'),
+(2, 'rubaaboissa', '1997-10-17', 'ruba@gmail.com', '123123', '125487875121', 'reinprechtsdorfer strasse. 1050 vienna', 'f', 'single', 'Null', 'Syrien', 'Matura', '2019-09-18 11:53:59', 'user'),
 (5, 'Director', '1988-05-05', 'director@gmail.com', '123123', '0935074175', 'lalagasse wien,1050', 'm', 'Married', 'one', 'Austrian', 'Civil engineer', '2019-09-17 19:09:09', 'director'),
 (6, 'the engineer', '1991-01-03', 'eng@gmail.com', '123123', '0935214785', 'enggasse wien1050', 'f', 'Married', 'two', 'Austrian', 'Compute science engineer', '2019-09-17 19:09:55', 'eng'),
 (7, 'the dealer', '1996-06-14', 'dealer@gmail.com', '123123', '123734562', 'Germany', 'm', 'Married', 'three', 'Austrian', 'Economics', '2019-09-17 19:10:32', 'dealer'),
@@ -491,19 +497,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `buy`
 --
 ALTER TABLE `buy`
-  MODIFY `buy_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `buy_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `employee_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `employee_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `employment_app`
 --
 ALTER TABLE `employment_app`
-  MODIFY `employment_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `employment_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `employment_type`
@@ -557,7 +563,7 @@ ALTER TABLE `requests`
 -- AUTO_INCREMENT for table `salary`
 --
 ALTER TABLE `salary`
-  MODIFY `salary_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `salary_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `sections`

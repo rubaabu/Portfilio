@@ -105,7 +105,10 @@ $sql = "SELECT * FROM requests
                 <span>Type:</span><?php echo $row['request_type'];?><br>
                 <span>message:</span><?php echo $row['request_message'];?><br>
                 <span>Date:</span><?php echo $row['request_date'];?><br>
-               
+                <span>Status:</span><?php echo $row['request_status'];?><br>
+                <?php echo "
+                <a href='action/acceptRequest.php?id=" .$row['request_id']."'><button type='button' class='btn btn-dark'>Reply</button></a>"
+                  ;  ?>
             
 
 <hr>
@@ -138,7 +141,7 @@ $sql = "SELECT * FROM employment_app
                 <span>file:</span><?php echo $row['employment_file'];?><br>
                 <span>Date:</span><?php echo $row['employment_date'];?><br>
                 <hr>
-                
+               
 
 
 
@@ -177,10 +180,10 @@ $sql = "SELECT * FROM employment_app
     <label for="status">Worker</label>
     <input type="radio" name="status" value="worker" /><br >
    
- <label for="status">manager</label>
+    <label for="status">manager</label>
     <input type="radio" name="status" value="manager" /><br >
    
- <label for="status">engineer</label>
+    <label for="status">engineer</label>
     <input type="radio" name="status" value="engineer" /><br >
    
     <label for="status">accountant</label>
@@ -196,13 +199,13 @@ $sql = "SELECT * FROM employment_app
     
 
     <button type ="submit" class='btn btn-dark'name="apply">hire</button>
-    
+    </form>
 </fieldset>
 
 
 <h3> pay salary </h3>
 <label>To:</label>
-
+<form action="action/paysalary.php" method="post">
 <select name="fullname">
     <option selected="selected">Choose name</option>
     <?php 
@@ -227,8 +230,8 @@ $sql = "SELECT * FROM employment_app
 <input type="text" name="amount" placeholder="€"/><br >
 <label>Date:</label>
 <input type="date" name="date" /><br >
-<button type ="submit" name="apply"class='btn btn-dark'>pay</button>
-
+<button type ="submit" name="pay" class='btn btn-dark'>pay</button>
+</form>
 </div>
 
 <hr >

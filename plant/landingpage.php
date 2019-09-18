@@ -21,8 +21,7 @@ if( !isset($_SESSION['user' ]) && !isset($_SESSION['director'])  && !isset($_SES
         $var = $_SESSION['dealer'];
 
 } else {
-   header('Location: landingpage.php');
-
+   
    $var = $_SESSION['user'];
 
   }

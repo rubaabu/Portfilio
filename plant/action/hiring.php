@@ -1,6 +1,7 @@
 <?php 
 ob_start();
 session_start();
+
 require '../function.php';
 
 $hiring = new DBsetup;
