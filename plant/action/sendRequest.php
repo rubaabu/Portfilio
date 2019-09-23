@@ -14,11 +14,11 @@ if( !isset($_SESSION['user' ]) && !isset($_SESSION['director']) && !isset($_SESS
      $var = $_SESSION['director'];
 
    } else if (isset($_SESSION['eng'])){
-        header('Location: engpage.php');
+       
     $var = $_SESSION['eng'];
 
    }else if (isset($_SESSION['dealer'])){
-    header('Location: dealerpage.php');
+    
     $var = $_SESSION['dealer'];
 
 }
@@ -39,31 +39,40 @@ if( !isset($_SESSION['user' ]) && !isset($_SESSION['director']) && !isset($_SESS
 }
    $userRow=mysqli_fetch_array($result, MYSQLI_ASSOC);
   
-$salary = new DBsetup;
+
+$request = new DBsetup;
 $error = '';
 
 
 
-if($_POST['fullname']==""){
-    $error = $salary->assembleError($error,"please choose a fullname","fullname");
+if($_POST['type']==""){
+    $error = $request->assembleError($error,"please choose a type","type");
 }
 
 
-if($_POST['amount']==""){
-    $error = $salary->assembleError($error,"please choose a amount","amount");
+if($_POST['message']==""){
+    $error = $request->assembleError($error,"please choose a message","message");
 }
 
+if($_POST['date']==""){
+    $error = $request->assembleError($error,"please choose a date","date");
 
+}
+if($_POST['status']==""){
+    $error = $request->assembleError($error,"please choose a status","status");
+
+}
 if(!$error){
 
-    $salary_data = array(
-        'fk_user_from'  =>$_SESSION['director'],
-        'fk_user_to'    =>$_POST['fullname'],
-        'salary_amount' =>$_POST['amount']
-        
+    $request_data = array(
+        'fk_user_from'       =>$var,
+        'request_type'       =>$_POST['type'],
+        'request_message'    =>$_POST['message'],
+        'request_date'       =>$_POST['date'],
+        'request_status'     =>$_POST['status']
     );
 
-    echo $salary->paysalary($salary_data);
+    echo $request->sendRequest($request_data);
 
 }
 echo $error;

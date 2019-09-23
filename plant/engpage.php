@@ -1,5 +1,5 @@
 <?php 
-
+ob_start();
 session_start();
 require 'db.php';
 
@@ -40,73 +40,118 @@ if( !isset($_SESSION['user' ]) && !isset($_SESSION['director']) && !isset($_SESS
    <html lang="en">
    <head>
        <?php include 'header.php';?>
-       <title>Engineers page</title>
+       <style>
+   .body{
+       background-color: #d0ecf0
+   }
+   .ru{
+    margin-bottom: 100px;
+   }
+</style>
    </head>
-   <body>
-   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="userprofile.php">My profile</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="navbar navbar-light"  id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="navbar navbar-light" >
-        <a class="nav-link" href="managers.php">Mnagaers</a>
-      </li>
-      <li class="navbar navbar-light" >
-        <a class="nav-link" href="repository.php">Repositories</a>
-      </li>
-      <li class="navbar navbar-light" >
-        <a class="nav-link disabled" href="machine.php">Machine</a>
-      </li>
-      <li class="navbar navbar-light" >
-        <a class="nav-link disabled" href="section.php">Sections</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-   <a class="btn btn-secondary" href ="logout.php?logout">Sign out</a><br><br>
-   <!-- <a class='btn btn-dark' href="repository.php">Repositories</a> -->
-   <!-- <a class='btn btn-dark'href="machine.php">Machine</a> -->
-   <!-- <a class='btn btn-dark'href="userprofile.php">My profile</a> -->
-   <!-- <a class='btn btn-dark'href="managers.php">Managers</a> -->
+   <body class="body">
+   <?php require 'nav.php' ?>
+   
+<br>
+  
 
 
-<!-- <a class='btn btn-dark'href="section.php">Sections</a> -->
 
-<h3>the Requests</h3>
+<div class="container">
+<div class="ru">
 
-<?php 
-$sql = "SELECT * FROM requests
-        JOIN users ON fk_user_from=user_id WHERE role='manager'
-        ";
-        $result =mysqli_query($conn,$sql);
-        if (!$result) {
-            printf("Error: %s\n", mysqli_error($conn));
-            exit();
-        }
-
-        if($result->num_rows> 0) {
-            while($row = $result->fetch_assoc()) {?>
-
-                <span>From:</span><?php echo $row['fullname'];?><br>
-                <span>Type:</span><?php echo $row['request_type'];?><br>
-                <span>message:</span><?php echo $row['request_message'];?><br>
-                <span>Date:</span><?php echo $row['request_date'];?><br>
+      <div class="row">
+      <div class="col-md-6">
+         <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+              <h3> <strong class="d-inline-block mb-2 text-info">Our repositories</strong></h3>
                
-            
+               <div class="mb-1 text-muted small">Nov 12</div>
+               <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+               <a class="btn btn-info btn-sm" role="button" href="repository.php">View</a>
+            </div>
+            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="img/repository.jpg" style="width: 200px; height: 250px;">
+         </div>
+      </div>
+      <div class="col-md-6">
+         <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+              <h3> <strong class="d-inline-block mb-2 text-info">Our sections</strong></h3>
+               
+               <div class="mb-1 text-muted small">Nov 12</div>
+               <p class="card-text">Every section containts description raw material and the machines in it .</p>
+               <a class="btn btn-info btn-sm" role="button" href="section.php">View</a>
+            </div>
+            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="img/sections.jpg" style="width: 200px; height: 250px;">
+         </div>
+      </div>
+      </div>
 
-<hr>
+   <div class="row">
+      <div class="col-md-6">
+         <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+              <h3> <strong class="d-inline-block mb-2 text-info">Our machines</strong></h3>
+               
+               <div class="mb-1 text-muted small">Nov 12</div>
+               <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+               <a class="btn btn-info btn-sm" role="button" href="machine.php">View</a>
+            </div>
+            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="img/machine.jpg" style="width: 200px; height: 250px;">
+         </div>
+      </div>
 
 
-<?php
-}
-}
-?>
+      <div class="col-md-6">
+         <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+              <h3> <strong class="d-inline-block mb-2 text-info">Our managers</strong></h3>
+               
+               <div class="mb-1 text-muted small">Nov 12</div>
+               <p class="card-text">Every section containts description raw material and the machines in it .</p>
+               <a class="btn btn-info btn-sm" role="button" href="managers.php">View</a>
+            </div>
+            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="img/manager.jpg" style="width: 200px; height: 250px;">
+         </div>
+      </div>
+      </div>
 
-<hr>     
+
+      <div class="row">
+      <div class="col-md-6">
+         <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+              <h3> <strong class="d-inline-block mb-2 text-info">The answers from director</strong></h3>
+               
+               <div class="mb-1 text-muted small">Nov 12</div>
+               <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+               <a class="btn btn-info btn-sm" role="button" href="replyDic.php">View</a>
+            </div>
+            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="img/answerRQ.jpg" style="width: 200px; height: 250px;">
+         </div>
+      </div>
+
+
+      <div class="col-md-6">
+         <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+               <h3><strong class="d-inline-block mb-2 text-info">Requests from the manager</strong></h3>
+               
+               <div class="mb-1 text-muted small">Nov 12</div>
+               <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+               <a class="btn btn-info btn-sm" role="button" href="requestMan.php">View</a>
+            </div>
+            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="img/REQUEST.jpg" style="width: 200px; height: 250px;">
+         </div>
+      </div>
+      </div>
+    
+
+
+      </div>
+
+</div>
+<?php require 'footer.php'; ?>
+
    </body>
    </html>

@@ -11,7 +11,7 @@ $fullname        ="";
 $nameError       ="";
 $email           ="";
 $emailError      ="";
-$password        ="";
+$password1       ="";
 $passwordError   ="";
 $telefon        ="";
 $telError       ="";
@@ -156,16 +156,16 @@ if(isset($_POST['btn-signup'])) {
 
 if (!$error){
     $sql = "INSERT INTO users(fullname,date_of_birth,email,password,telefon,address,gender,
-    status,children,nationality,education,date_of_start,role)VALUES('$fullname','$date_of_birth','$email','$password','$telefon','$address',
+    status,children,nationality,education,date_of_start,role)VALUES('$fullname','$date_of_birth','$email','$password1','$telefon','$address',
     '$gender','$status','$children','$nationality','$education','','user')";
     $result = mysqli_query($conn, $sql);
 
 if($result){
 	$errTyp = "success";
 	$errMSG = "successfully registerd, you may login now";
-	unset($name);
+	unset($fullname);
 	unset($email);
-	unset($password);
+	unset($password1);
 } else {
 	$errTyp =" danger";
 	$errMSG =" Something went wrong, try again later...";
@@ -177,76 +177,210 @@ if($result){
 <!DOCTYPE html>
 <html>
     <head>
+
+
         <title>Registeration</title>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<style>
+
+@import "font-awesome.min.css";
+@import "font-awesome-ie7.min.css";
+/* Space out content a bit */
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #d0ecf0;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+/* Custom page header */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+}
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  padding-bottom: 19px;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+/* Customize container */
+@media (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+}
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+.jumbotron .btn {
+  padding: 14px 24px;
+  font-size: 21px;
+}
+
+/* Supporting marketing content */
+.marketing {
+  margin: 40px 0;
+}
+.marketing p + h4 {
+  margin-top: 28px;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+a {
+    color: #17a2b8;
+ 
+ }
+}
+
+
+</style>
+
+
+
     </head>
     <body> 
-        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" autocomplete ="off">
-            <h2>Sign up</h2>
-            <hr />
 
-            <?php
+
+
+    <div class="container">
+    <h1 class="well" style="color:#17a2b8;">Registration Form</h1>
+	<div class="col-lg-12 well">
+	<div class="row">
+
+				<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" autocomplete ="off">
+
+                <?php
             if(isset($errMsg)) {
                 ?> 
-                <div><?php echo $errMsg; ?> </div>
+                <div><?php echo $errMSG; ?> </div>
             <?php 
             }
             
             ?>
+					<div class="col-sm-12">
+						<div class="row">
+							<div class="col-sm-6 form-group">
+								<label>First Name</label>
+								<input type="text" placeholder="Enter your fullname here.." name ="fullname" value="<?php echo $fullname; ?>" class="form-control">
+                                <span> <?php   echo  $nameError; ?> </span >
 
+							</div>
+							<div class="col-sm-6 form-group">
+								<label>date of birth</label>
+								<input name="date_of_birth" value="<?php echo $date_of_birth; ?>" type="date" placeholder="Enter Last Name Here.." class="form-control">
+                                <span> <?php   echo  $dateerror; ?> </span >
+							</div>
+						</div>					
+						<div class="form-group">
+							<label>Address</label>
+							<textarea name="address" value="<?php echo $address; ?>" placeholder="Enter Address Here.." rows="3" class="form-control"></textarea>
+                            <span> <?php   echo  $addressError; ?> </span >
+						</div>	
+						<div class="row">
+							<div class="col-sm-4 form-group">
+								<label>Children</label>
+								<input name="children" value="<?php echo $children; ?>" type="text" placeholder="Enter number Here.." class="form-control">
+                                <span> <?php   echo  $childrenError; ?> </span >
+							</div>	
+							<div class="col-sm-4 form-group">
+								<label>Nationality</label>
+								<input name="nationality" value="<?php echo $nationality; ?>" type="text" placeholder="Enter State Name Here.." class="form-control">
+                                <span> <?php   echo  $nationalityError; ?> </span >
+							</div>	
+							<div class="col-sm-4 form-group">
+								<label>Education</label>
+								<input name="education" value="<?php echo $education; ?>" type="text" placeholder="Enter Zip Code Here.." class="form-control">
+                                <span> <?php   echo  $educationError; ?> </span >
+							</div>		
+                           
+						</div>
+							
+                        <div>
+                            <label>Status:</label><br>
+                            <label for="status">Married</label>
+                            <input type="radio" name ="status" value="Married" />
 
-            
-            <input type="text" name ="fullname" placeholder ="enter your fullname" maxlength="50" value="<?php echo $fullname; ?>" /><br>
-            <span> <?php   echo  $nameError; ?> </span >
+                            <label for="status">Single</label>            
+                            <input type="radio" name ="status" value="single" /><br>
 
+                            <span> <?php   echo  $statusError; ?> </span ><br>
+                        </div>
+                         <div>
+                                     <label>Gender:</label><br>
+                                    <label for="gender">Female</label>
+                                    <input type="radio" name ="gender" value="f" />
 
-            <input type="date" name ="date_of_birth" placeholder="YYYY-MM-DD" maxlength="50" value="<?php echo $date_of_birth; ?>" /><br>
-            <span> <?php   echo  $dateerror; ?> </span >
+                                    <label for="gender">Male</label>    
+                                    <input type="radio" name ="gender" value="m" /><br>
 
-            <input type="email" name ="email" placeholder ="enter your email" maxlength="50" value="<?php echo $email; ?>" /><br>
-            <span> <?php   echo  $emailError; ?> </span >
+                                    <span> <?php   echo  $genderError; ?> </span ><br>
 
-            <input type="password" name ="password" placeholder ="enter your password" maxlength="50" value="<?php echo $password; ?>" /><br>
-            <span> <?php   echo  $passwordError; ?> </span >
+                            </div>
+					<div class="form-group">
+						<label>Phone Number</label>
+						<input name="telefon" value="<?php echo $telefon; ?>" type="text" placeholder="Enter Phone Number Here.." class="form-control">
+                        <span> <?php   echo  $telError; ?> </span >
+					</div>		
+					<div class="form-group">
+						<label>Email Address</label>
+						<input name="email" value="<?php echo $email; ?>" type="text" placeholder="Enter Email Address Here.." class="form-control">
+                        <span> <?php   echo  $emailError; ?> </span >
+					</div>
+                    <div class="form-group">
+						<label>Password</label>
+						<input name="password" value="<?php echo $password; ?>" type="password" placeholder="Enter Email Address Here.." class="form-control">
+                        <span> <?php   echo  $passwordError; ?> </span >
+					</div>	
+                    <button type ="submit" name="btn-signup" class="btn btn-lg btn-info" >Sign Up</button >
+									<a href="login.php">login</a>
+					</div>
+				</form> 
+				</div>
+	</div>
+	</div>
 
-            <input type="text" name ="telefon" placeholder ="enter your telefon" maxlength="50" value="<?php echo $telefon; ?>" /><br>
-            <span> <?php   echo  $telError; ?> </span >
-
-            <input type="text" name ="address" placeholder ="enter your address" maxlength="50" value="<?php echo $address; ?>" /><br>
-            <span> <?php   echo  $addressError; ?> </span >
-
-            <label>Gender:</label><br>
-            <label for="gender">Female</label>
-            <input type="radio" name ="gender" value="f" />
-
-            <label for="gender">Male</label>    
-            <input type="radio" name ="gender" value="m" /><br>
-
-            <span> <?php   echo  $genderError; ?> </span ><br>
-
-
-            <label>Status:</label><br>
-            <label for="status">Married</label>
-            <input type="radio" name ="status" value="Married" />
-
-            <label for="status">Single</label>            
-            <input type="radio" name ="status" value="single" /><br>
-
-            <span> <?php   echo  $statusError; ?> </span ><br>
-
-            <input type="text" name ="children" placeholder ="enter your children" maxlength="50" value="<?php echo $children; ?>" /><br>
-            <span   class = "text-danger" > <?php   echo  $childrenError; ?> </span >
-
-            <input type="text" name ="nationality" placeholder ="enter your nationality" maxlength="50" value="<?php echo $nationality; ?>" /><br>
-            <span   class = "text-danger" > <?php   echo  $nationalityError; ?> </span >
-
-            <input type="text" name ="education" placeholder ="enter your education" maxlength="50" value="<?php echo $education; ?>" /><br>
-            <span   class = "text-danger" > <?php   echo  $educationError; ?> </span >
-
-            <button type = "submit" name="btn-signup">Sign Up</button >
-
-            <button type="button" ><a href="login.php">login</a></button>
-            
-            </form>
+    <?php require 'footer.php'; ?>
 
 
     </body>

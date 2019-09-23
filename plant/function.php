@@ -2,24 +2,7 @@
 
 class DBsetup {
 
-    public $hostDB = 'localhost';
-    public $userDB = 'root';
-    public $passDB = '';
-    public $databaseDB = 'production_plant';
-
-    public $conn;
-
-    public function connect() {
-
-        $this->conn = mysqli_connect($this->hostDB,$this->userDB,$this->passDB,$this->databaseDB);
-        mysqli_set_charset($this->conn,"utf8");
-
-    }
-
-    public function disconnect() {
-
-        $this->conn = mysqli_close($this->conn);
-    }
+   
 
      // Inserts to database
     // 1. Parameter is the table name
@@ -53,24 +36,26 @@ class DBsetup {
     // Output if success 'success'
     public function makeBoolQuery($sql) {
 
-        $this->connect();
+        require 'db.php';
 
-        $result =mysqli_query($this->conn,$sql);
+       
+
+        $result =mysqli_query($conn,$sql);
         if (!$result) {
-            printf("Error: %s\n", mysqli_error($this->conn));
+            printf("Error: %s\n", mysqli_error($conn));
             exit();
         }
-        $error = mysqli_error($this->conn);
+        $error = mysqli_error($conn);
 
-        $this->disconnect();
-
+       
+        $conn->close();
         if ($error == '') {
             return 'success';
         } else {
             return $error;
         }
 
-    }
+    } 
 
 
     // Assembles error for forms
@@ -139,8 +124,16 @@ class DBsetup {
 
     
 
+    // 1. Parameter is an array( 'index' => 'value' )
+    //      1.1 The index of an value is the column name and the value is the column value
+    // If the query was a success it outputs 'success'
+    // If the query failed it outputs the query error
+    public function sendRequest($request_data){
 
+        $this->makeInsertQuery('requests',$request_data);
+    }
 
+    
 
        
 

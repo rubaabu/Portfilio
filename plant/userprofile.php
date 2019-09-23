@@ -7,12 +7,24 @@ require 'db.php';
 
 <html>
 <head>
+<style>
+   .body{
+       background-color: #d0ecf0
+   }
+   
+</style>
 <?php include 'header.php'; ?>
 </head>
-<body>
+<body class="body">
+<?php require 'nav.php'; ?>
 
-  <a class='btn btn-dark' href="logout.php?logout">logout</a>
-<hr>
+
+<br>
+
+
+<a href="managerpage.php"><button type='button' class='btn btn-info'>back</button></a>
+
+
 <div class="container">
   <?php
   if(isset($_SESSION['user'])){
@@ -24,7 +36,7 @@ require 'db.php';
   } else if(isset($_SESSION['dealer'])){
     $var = $_SESSION['dealer'];
 
-  } else if($_SESSION['eng']){
+  } else if(isset($_SESSION['eng'])){
     $var = $_SESSION['eng'];
 
   } else if($_SESSION['manager']){
@@ -49,20 +61,32 @@ require 'db.php';
       if($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {?>
 
-          <h4>Fullname:<?php echo $row['fullname'];?></h4>
-          <h4>date of birth: <?php echo $row['date_of_birth'];?></h4>
-          <h4>Email: <?php echo $row['email'];?></h4>
-          <h4>Telefon: <?php echo $row['telefon'];?></h4>
-          <h4>Address: <?php echo $row['address'];?></h4>
-          <h4>Gender: <?php echo $row['gender'];?></h4>
-          <h4>Status: <?php echo $row['status'];?></h4>
-          <h4>Children: <?php echo $row['children'];?></h4>
-          <h4>Nationality: <?php echo $row['nationality'];?></h4>
-          <h4>Education: <?php echo $row['education'];?></h4>
-          <h4>Date of start: <?php echo $row['date_of_start'];?></h4>
+  
+   
+  
 
 
-            <a class='btn btn-dark' href="landingpage.php">back</a>
+      <div class="card">
+
+        <div class="card-header">
+          <h4 style="color: #0d3446; text-align: center;"><b><?php echo $row['fullname'];?></b></h4>
+        </div>
+          <ul class="list-group list-group-flush">
+
+          <li class="list-group-item">date of birth: <?php echo $row['date_of_birth'];?></li>
+          <li class="list-group-item">Email: <?php echo $row['email'];?></li>
+          <li class="list-group-item">Telefon: <?php echo $row['telefon'];?></li>
+          <li class="list-group-item">Address: <?php echo $row['address'];?></li>
+          <li class="list-group-item">Gender: <?php echo $row['gender'];?></li>
+          <li class="list-group-item">Status: <?php echo $row['status'];?></li>
+          <li class="list-group-item">Children: <?php echo $row['children'];?></li>
+          <li class="list-group-item">Nationality: <?php echo $row['nationality'];?></li>
+          <li class="list-group-item">Education: <?php echo $row['education'];?></li>
+          <li class="list-group-item">Date of start: <?php echo $row['date_of_start'];?></li>
+
+          </ul>
+
+      </div>   
 
 
   
@@ -73,6 +97,8 @@ require 'db.php';
   ?>
   
   </div>
+  <br>
+  <?php require 'footer.php'; ?>
 
 </body>
 </html>

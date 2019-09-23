@@ -1,33 +1,36 @@
 <?php 
-
+ob_start();
 session_start();
 require 'db.php';
 
-
-
-if( !isset($_SESSION['user' ]) && !isset($_SESSION['director']) && !isset($_SESSION['eng']) && !isset($_SESSION['dealer']) ) {
+if( !isset($_SESSION['user' ]) && !isset($_SESSION['director']) && !isset($_SESSION['eng']) && !isset($_SESSION['dealer']) && !isset($_SESSION['manager']) ) {
     header("Location: login.php");
     exit;
     }
 
-
+   
+   
    if(isset($_SESSION['director'])){
-      
      $var = $_SESSION['director'];
+     header('Location: directorpage.php');
+
 
    } else if (isset($_SESSION['eng'])){
-        header('Location: engpage.php');
-    $var = $_SESSION['eng'];
+       header('Location: engpage.php');
+        $var = $_SESSION['eng'];
+
+   }else if (isset($_SESSION['manager'])){
+    $var = $_SESSION['manager'];
 
    }else if (isset($_SESSION['dealer'])){
-    header('Location: dealerpage.php');
+       header('Location: dealerpage.php');
     $var = $_SESSION['dealer'];
 
-}
+   }
    else {
+    $var = $_SESSION['user'];
     header('Location: landingpage.php');
 
-    $var = $_SESSION['user'];
 
    }
 
@@ -44,26 +47,29 @@ if( !isset($_SESSION['user' ]) && !isset($_SESSION['director']) && !isset($_SESS
 
 
 
-<html>
+   
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<?php require 'header.php'; ?>
 <style>
    .body{
        background-color: #d0ecf0
    }
-   
+   .ru{
+    margin-bottom: 100px;
+   }
 </style>
+    <?php require 'header.php'; ?>
+    
 </head>
 <body class="body">
-
 <?php require 'nav.php'; ?>
 
-
-
-<br>
-
-
+<br >
 <div class="container">
+<div class="ru">
+
+
 
 <div class="row">
       <div class="col-md-6">
@@ -86,7 +92,7 @@ if( !isset($_SESSION['user' ]) && !isset($_SESSION['director']) && !isset($_SESS
               <h3> <strong class="d-inline-block mb-2 text-info">Our sections</strong></h3>
                
                <div class="mb-1 text-muted small">Nov 12</div>
-               <p class="card-text">Every section containts of description raw material and the machines in it .</p>
+               <p class="card-text">Every section containts description raw material and the machines in it .</p>
                <a class="btn btn-info btn-sm" role="button" href="section.php">View</a>
             </div>
             <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="img/sections.jpg" style="width: 200px; height: 250px;">
@@ -113,55 +119,20 @@ if( !isset($_SESSION['user' ]) && !isset($_SESSION['director']) && !isset($_SESS
       <div class="col-md-6">
          <div class="card flex-md-row mb-4 shadow-sm h-md-250">
             <div class="card-body d-flex flex-column align-items-start">
-               <h3><strong class="d-inline-block mb-2 text-info">Our Workers</strong></h3>
+               <h3><strong class="d-inline-block mb-2 text-info">Our workers</strong></h3>
                
                <div class="mb-1 text-muted small">Nov 12</div>
                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                <a class="btn btn-info btn-sm" role="button" href="workers.php">View</a>
             </div>
-            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="img/worker.jpg" style="width: 220px; height: 250px;">
+            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="img/worker.jpg" style="width: 200px; height: 250px;">
          </div>
       </div>
       </div>
-
-      <div class="row">
-      <div class="col-md-6">
-         <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-            <div class="card-body d-flex flex-column align-items-start">
-              <h3> <strong class="d-inline-block mb-2 text-info">Jobs requests</strong></h3>
-               
-               <div class="mb-1 text-muted small">Nov 12</div>
-               <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-               <a class="btn btn-info btn-sm" role="button" href="jobRq.php">View</a>
-            </div>
-            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="img/job.jpg" style="width: 200px; height: 250px;">
-         </div>
-      </div>
-
-
-      <div class="col-md-6">
-         <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-            <div class="card-body d-flex flex-column align-items-start">
-               <h3><strong class="d-inline-block mb-2 text-info">Requests</strong></h3>
-               
-               <div class="mb-1 text-muted small">Nov 12</div>
-               <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-               <a class="btn btn-info btn-sm" role="button" href="requests.php">View</a>
-            </div>
-            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="img/request.jpg" style="width: 220px; height: 250px;">
-         </div>
-      </div>
-      </div>
-
-
-
-
+    
+</div>
 </div>
 
-<hr >
 <?php require 'footer.php'; ?>
-
 </body>
-
-
 </html>

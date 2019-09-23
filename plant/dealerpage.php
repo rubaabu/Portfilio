@@ -1,5 +1,5 @@
 <?php 
-
+ob_start();
 session_start();
 require 'db.php';
 
@@ -44,90 +44,63 @@ if( !isset($_SESSION['user' ]) && !isset($_SESSION['director']) && !isset($_SESS
 <!DOCTYPE html>
    <html lang="en">
    <head>
-       <meta charset="UTF-8">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <meta http-equiv="X-UA-Compatible" content="ie=edge">
-       <title>Dealer page</title>
+      
        <?php require 'header.php'; ?>
-   </head>
-   <body>
-<a href ="logout.php?logout">Sign out</a><br><br>
-<a class='btn btn-dark'href="userprofile.php">My profile</a>
 
+       <style>
+   .body{
+       background-color: #d0ecf0
+   }
 
-
-<h3>the Requests from Engineers</h3>
-
-<?php 
-$sql = "SELECT * FROM requests
-        JOIN users ON fk_user_from=user_id WHERE user_id='6' ";
-        $result =mysqli_query($conn,$sql);
-        if (!$result) {
-            printf("Error: %s\n", mysqli_error($conn));
-            exit();
-        }
-
-        if($result->num_rows> 0) {
-            while($row = $result->fetch_assoc()) {?>
-
-                <span>From:</span><?php echo $row['fullname'];?><br>
-                <span>Type:</span><?php echo $row['request_type'];?><br>
-                <span>message:</span><?php echo $row['request_message'];?><br>
-                <span>Date:</span><?php echo $row['request_date'];?><br>
-
-<hr>
-
-
-<?php
-}
-}
-?>    
-  
-  <h3>The requests from clients</h3>
-  <?php
+   .ru{
+    margin-bottom: 360px;
+   }
    
-    $sql = "SELECT * FROM buy
-    JOIN users ON fk_user_from=user_id";
-    $result =mysqli_query($conn,$sql);
-    if (!$result) {
-        printf("Error: %s\n", mysqli_error($conn));
-        exit();
-    }
+</style>
 
-    if($result->num_rows> 0) {
-        while($row = $result->fetch_assoc()) {?>
+   </head>
+   <body class="body">
 
-                <span>From:</span><?php echo $row['fullname'];?><br>
-                <span>message:</span><?php echo $row['buy_message'];?><br>
-                <span>Date:</span><?php echo $row['buy_date'];?><br>
-<hr>
-<?php 
-        }
-    }
-    ?>
+<?php require 'nav.php'; ?>
+<br >
+<div class="container">
+<div class="ru">
 
-    <h3>the Questions for viewers</h3>
+  <div class="row">
+        <div class="col-md-6">
+          <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+              <div class="card-body d-flex flex-column align-items-start">
+                <h3> <strong class="d-inline-block mb-2 text-info">the Requests from Engineers</strong></h3>
+                
+                <div class="mb-1 text-muted small">Nov 12</div>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a class="btn btn-info btn-sm" role="button" href="requestsEng.php">View</a>
+              </div>
+              <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="img/request.jpg" style="width: 200px; height: 250px;">
+          </div>
+        </div>
 
-    <?php
-        $sql ="SELECT * FROM q_message";
-        $result =mysqli_query($conn,$sql);
-    if (!$result) {
-        printf("Error: %s\n", mysqli_error($conn));
-        exit();
-    }
 
-    if($result->num_rows> 0) {
-        while($row = $result->fetch_assoc()) {?>
+        <div class="col-md-6">
+          <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+              <div class="card-body d-flex flex-column align-items-start">
+                <h3> <strong class="d-inline-block mb-2 text-info">The requests from clients</strong></h3>
+                
+                <div class="mb-1 text-muted small">Nov 12</div>
+                <p class="card-text">Every section containts description raw material and the machines in it .</p>
+                <a class="btn btn-info btn-sm" role="button" href="orders.php">View</a>
+              </div>
+              <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="img/request.jpg" style="width: 200px; height: 250px;">
+          </div>
+        </div>
+        </div>
 
-                <span>Name:</span><?php echo $row['q_message_name'];?><br>
-                <span>Email:</span><?php echo $row['q_message_email'];?><br>
-                <span>Subject:</span><?php echo $row['q_message_subject'];?><br>
-                <span>message:</span><?php echo $row['q_message_message'];?><br>
-    <?php echo " <a href='action/deletQM.php?id=" .$row['q_message']."'><button type='button' class='btn btn-dark'>Delete</button></a>"  ;?>
+   
 
-        <?php
-         }
-        }
-        ?>
+        </div>
+
+        </div>
+<?php require 'footer.php'; ?>
+
    </body>
    </html>

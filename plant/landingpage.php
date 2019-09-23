@@ -43,15 +43,24 @@ if( !isset($_SESSION['user' ]) && !isset($_SESSION['director'])  && !isset($_SES
    <html>
    <head>
 <?php require 'header.php'; ?>  
+<style>
+   .body{
+       background-color: #d0ecf0
+   }
    
+</style>
    </head>
-   <body>
-   <a  href="logout.php?logout" style=" color: #483D8B;">Sign Out</a><hr>
-   <a class='btn btn-dark' href="userprofile.php?userid">my profile</a>
+   <body class="body">
+<?php require 'nav.php'; ?><br> 
 
-   <h2>Products</h2>
-   <hr >
 
+
+
+<div class="container">
+
+    <form action="action/buy.php" method="get">
+        <h3 style=" color: #176d81" class="text-center ">Our products</h3>
+        <br>
     <?php 
         $sql ="SELECT * FROM products";
 
@@ -59,80 +68,43 @@ if( !isset($_SESSION['user' ]) && !isset($_SESSION['director'])  && !isset($_SES
         if($result->num_rows > 0) {
             while($row = $result->fetch_assoc()){ ?>
 
-<div>
-                <h4><?php echo $row['product_name'];?></h4>
-                <span>Quantity</span> <?php echo $row['product_quantity']; ?><br>
-                <span>date</span><?php echo  $row['product_date']; ?><br>
-                <span type="text">description</span><?php echo $row['product_description']; ?><br>
-                <hr>
-</div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card flex-md-row mb-4 shadow-sm h-md-250">
 
- <?php
- }
+                <div class="card-body flex-column align-items-start">
+            
+
+                    <h4 class="d-inline-block mb-2 text-info" style="color: #0d3446"><?php echo $row['product_name'];?></h4><br>
+                    <span class="card-text">Quantity: </span> <?php echo $row['product_quantity']; ?><br>
+                    <span class="card-text">date: </span><?php echo  $row['product_date']; ?><br>
+                    <span class="card-text">description: </span><?php echo $row['product_description']; ?><br>
+                    
+                <br>
+                    <a href='buy.php'><button type='button' class='btn btn-info'>Buy a product</button></a>
+                    
+            
+                </div>
+            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="img/product.jpg" style="width: 200px; height: 250px;">
+                
+            </div>
+                <br>
+        </div>
+    </div>
+
+<?php
 }
-    ?>
-    <?php 
+}
+?> 
+
+    </form>
+
+            <?php 
            $result->free();
            ?>
 
-
-
-
-<fieldset>
-    <legend>Order your product</legend>
-    <hr>
-    <form  action="action/userbuy.php" method= "post" >
-    <input type="text" name="message" placeholder="enter the message" /><br >
-    <input type="date" name="date" /><br >
-
-    <button class='btn btn-dark' type ="submit" name="send">send</button>
-    <a href= "landingpage.php"><button class='btn btn-dark' type="button">Back</ button></a>
-    </form>
-</fieldset>
-
-
-
-
-
-
-
-<fieldset>
-    <legend>apply for a jop</legend>
-    <hr>
-    <form  action="action/employmentApp.php" method= "post" >
-
-    <select name="type">
-    <option selected="selected">Choose type</option>
-    <?php 
-        $sql = "SELECT * FROM employment_type";
-        $result = mysqli_query($conn,$sql);
-        if (!$result) {
-            printf("Error: %s\n", mysqli_error($conn));
-            exit();
-        }
-        $rows = $result->fetch_all(MYSQLI_ASSOC);
-        foreach($rows as $item){
-            ?>
-            <option value="<?php echo $item['type_id'];?>"><?php echo $item['type_name']; ?> </option>
-            <?php 
-        }
-    
-    ?>
-   
-    </select><br>
-    <input type="text" name="message" placeholder="enter the message" /><br >
-
-    <input type="file" name="file" /><br >
-
-    <button class='btn btn-dark'type ="submit" name="apply">send</button>
-    <a href= "landingpage.php"><button class='btn btn-dark' type="button">Back</ button></a>
-    </form>
-</fieldset>
-
-
-
-
-
+</div>
+<?php require 'footer.php'; ?>
 
 </body>
    </html>

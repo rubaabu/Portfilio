@@ -44,7 +44,9 @@ $error = '';
 if($_POST['message'] == ''){
     $error = $buy->assembleError($error,'Enter your message','message');
 }
-
+if($_POST['product_name']==""){
+    $error = $buy->assembleError($error,"please choose a product","product_name");
+}
 
 
 if($error==""){
@@ -53,7 +55,8 @@ if($error==""){
 
         'fk_user_from'   =>$_SESSION['user'],
         'buy_message'    =>$_POST['message'],
-        'buy_date'       =>$_POST['date']
+        
+        'product_id'     =>$_POST['product_name']
 
     );
 
