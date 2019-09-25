@@ -1,5 +1,7 @@
 <?php 
 require '../db.php';
+ob_start();
+session_start();
 
 if(isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -40,7 +42,7 @@ if(isset($_GET['id'])) {
 
 <body class="body">
 
-<?php require '../navDict.php'; ?>
+<?php require '../nav.php'; ?>
 <a href="../requests.php"><button type='button' class='btn btn-info'>back</button></a>
     
 <div id="ru">

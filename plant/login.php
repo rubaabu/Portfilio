@@ -8,6 +8,7 @@ $email ="";
 $emailError="";
 $passwordError="";
 $password ="";
+
 $error = false;
 
 
@@ -44,7 +45,7 @@ if(isset($_POST['login'])) {
         $row=mysqli_fetch_array($res, MYSQLI_ASSOC);
         $count = mysqli_num_rows($res); // if uname/pass is correct it returns must be 1 row 
         
-        if( $count == 1 ) {
+        if( $count == 1 && $row['password' ]==$pass) {
           if($row["role"] == "director"){
 
             $_SESSION['director'] = $row['user_id'];
@@ -73,7 +74,7 @@ if(isset($_POST['login'])) {
           }
          
         } else {
-         $errMSG = "Incorrect Credentials, Try again..." ;
+         $errMSG = "Incorrect email or password, Try again..." ;
         }
     }
        
@@ -103,6 +104,7 @@ body {
   font-family: "Poppins", sans-serif;
   height: 100vh;
   background-color: #d0ecf0;
+  
 }
 
 a {
@@ -398,20 +400,41 @@ input[type=password]:placeholder {
    <h4 style="color: #17A2B8;" >Log In!</h4>
 
     <!-- Login Form -->
-    <form method="post"  action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete= "off">
-      <input type="text" id="login" class="fadeIn second" name="email" placeholder="login">
-      <label value="<?php echo $emailError; ?>"></label>
+    <form method="post"  action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" >
 
-      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
-      <label value="<?php echo $passwordError; ?>"></label>
+    <?php
+  if ( isset($errMSG) ) {
+echo  $errMSG; ?>
+             
+               <?php
+  }
+  ?>
+           
+      <input type="text" id="login" class="fadeIn second" name="email" placeholder="login"><br>
+      <span style="color: red"><?php echo $emailError; ?></span><br>
+
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password"><br>
+      <span style="color: red" ><?php echo $passwordError; ?></span><br>
+
       <input type="submit" name="login" class="fadeIn fourth btn btn-info" value="Log In">
+       <div>
+    
+      <strong style=" color: #71adb5; font-size: 10px">as user + manager</strong><br>
+      <strong  style ="color: #71adb5; font-size: 10px" >email: user@gmail.com + manager@gmail.com <br> password: 123123</strong><hr >
+      <strong style=" color: #71adb5; font-size: 10px" >as director + dealer:</strong><br>
+      <strong  style ="color: #71adb5; font-size: 10px" >email: director@gmail.com + dealer@gmail.com<br> password: 123123</strong><hr >
+      <strong style=" color: #71adb5; font-size: 10px" >as engineer + accountant:</strong><br>
+      <strong  style ="color: #71adb5; font-size: 10px" >email: eng@gmail.com + acc@gmail.com<br> password: 123123</strong>
+
+    
+    </div>
     </form>
 
     <!-- Remind Passowrd -->
     <div id="formFooter">
       <a class="underlineHover" href="register.php">register?</a>
     </div>
-
+   
   </div>
 </div>
 

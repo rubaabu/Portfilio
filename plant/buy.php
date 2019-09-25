@@ -30,14 +30,15 @@ session_start();
     </style>
    
 
-    <?php require 'header.php'; ?>
+   
 
 <body class="body">
 
 <?php require 'nav.php'; ?><br>
 <a href="managerpage.php"><button type='button' class='btn btn-info'>back</button></a>
-<div class="container">
 <div id="ru">
+<div class="container">
+
  
   
     
@@ -81,6 +82,7 @@ session_start();
                                             </select><br>
                                     <input type="submit" name="send" class="btn btn-info btn-md" value="Send">
 
+                                    </div>
     
 
                                  </form>

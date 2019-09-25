@@ -46,7 +46,7 @@ session_start();
 
                          <div class="form-group">
                          <label for="user" style=" color: #d8dfe2">Name</label>
-                            <select  class="form-control">
+                            <select name="user" class="form-control">
                             <option selected="selected">Choose user</option>
                             <?php 
                                 $sql = "SELECT * FROM users";   
