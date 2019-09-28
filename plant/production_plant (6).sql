@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 23, 2019 at 10:39 PM
+-- Generation Time: Sep 29, 2019 at 12:48 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.6
 
@@ -43,7 +43,8 @@ CREATE TABLE `buy` (
 INSERT INTO `buy` (`buy_id`, `fk_user_from`, `buy_message`, `buy_date`, `product_id`) VALUES
 (35, 2, 'wrdfgrwf', '2019-09-21 13:06:30', 1),
 (36, 2, 'i want to buy', '2019-09-23 12:20:16', 2),
-(37, 2, 'i want to buy this ', '2019-09-23 13:51:49', 2);
+(37, 2, 'i want to buy this ', '2019-09-23 13:51:49', 2),
+(38, 2, 'sesesese', '2019-09-24 12:09:16', 4);
 
 -- --------------------------------------------------------
 
@@ -70,7 +71,9 @@ INSERT INTO `employees` (`employee_id`, `employee_date`, `employee_status`, `fk_
 (6, '2019-09-14 16:20:47', '', 11),
 (7, '2019-09-14 16:20:55', 'accountant', 10),
 (8, '2019-09-14 16:21:02', 'worker', 8),
-(9, '2019-09-18 11:30:39', 'manager', 12);
+(9, '2019-09-18 11:30:39', 'manager', 12),
+(11, '2019-09-24 11:50:15', 'engineer', 15),
+(12, '2019-09-24 12:43:15', 'manager', 13);
 
 -- --------------------------------------------------------
 
@@ -97,7 +100,12 @@ INSERT INTO `employment_app` (`employment_id`, `employment_message`, `employment
 (20, 'i want to have a appointment with you to see my projects', 'landingpage.php', 2, '2019-09-18 12:01:53', 1),
 (21, 'i want to work with you', 'engpage.php', 13, '2019-09-18 18:40:02', 2),
 (22, 'dfcs', 'Programming PHP, 3rd Edition.pdf', 16, '2019-09-22 20:11:23', 1),
-(23, 'i have experience', 'pizza.jpg', 2, '2019-09-23 12:21:46', 3);
+(23, 'i have experience', 'pizza.jpg', 2, '2019-09-23 12:21:46', 3),
+(24, 'dsf', '77777.jpg', 2, '2019-09-24 12:09:30', 3),
+(25, 'dddd2', 'certificate.pdf', 2, '2019-09-27 14:47:04', 2),
+(26, 'tar', 'Lebenslauf.pdf', 2, '2019-09-27 14:48:00', 3),
+(27, 'sesesese', '', 2, '2019-09-27 14:49:35', 3),
+(28, 'dfcs', '', 2, '2019-09-27 15:00:32', 2);
 
 -- --------------------------------------------------------
 
@@ -174,18 +182,19 @@ CREATE TABLE `products` (
   `product_name` varchar(200) NOT NULL,
   `product_quantity` int(200) NOT NULL,
   `product_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `product_description` varchar(500) NOT NULL
+  `product_description` varchar(500) NOT NULL,
+  `product_price` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`product_id`, `product_name`, `product_quantity`, `product_date`, `product_description`) VALUES
-(1, 'Product A', 200, '2019-09-01 03:00:00', 'Ready to sale'),
-(2, 'Product B', 20, '2019-09-02 04:00:00', 'its completely new'),
-(3, 'Product C', 50, '2019-09-02 22:00:00', 'it has a very good quality '),
-(4, 'Product D', 60, '2019-09-04 07:00:00', 'from China');
+INSERT INTO `products` (`product_id`, `product_name`, `product_quantity`, `product_date`, `product_description`, `product_price`) VALUES
+(1, 'Product A', 200, '2019-09-01 03:00:00', 'Ready to sale', ''),
+(2, 'Product B', 20, '2019-09-02 04:00:00', 'its completely new', ''),
+(3, 'Product C', 50, '2019-09-02 22:00:00', 'it has a very good quality ', ''),
+(4, 'Product D', 60, '2019-09-04 07:00:00', 'from China', '');
 
 -- --------------------------------------------------------
 
@@ -207,7 +216,8 @@ CREATE TABLE `q_message` (
 --
 
 INSERT INTO `q_message` (`q_message`, `q_message_name`, `q_message_email`, `q_message_subject`, `q_message_message`, `q_date`) VALUES
-(1, 'INFO', 'in@gmail.com', 'Products', 'where do you produce the products?', '2019-09-21 13:09:10');
+(1, 'INFO', 'in@gmail.com', 'Products', 'where do you produce the products?', '2019-09-21 13:09:10'),
+(2, 'test', 'test@gmail.com', 'test', 'testing the card', '2019-09-28 22:01:02');
 
 -- --------------------------------------------------------
 
@@ -228,7 +238,9 @@ CREATE TABLE `raw_material` (
 --
 
 INSERT INTO `raw_material` (`raw_material_id`, `raw_material_name`, `raw_material_date`, `raw_material_description`, `raw_material_price`) VALUES
-(1, 'Metal', '2019-09-11 22:00:00', 'from Germany', '5 thousands euro');
+(2, 'wood', '2019-09-02 22:00:00', 'test', '200€'),
+(3, 'Cotton', '2019-09-28 21:57:08', 'test', '2000€'),
+(4, 'metal', '2019-07-03 22:00:00', 'testing', '200€');
 
 -- --------------------------------------------------------
 
@@ -272,10 +284,10 @@ CREATE TABLE `requests` (
 --
 
 INSERT INTO `requests` (`request_id`, `request_type`, `request_message`, `request_date`, `fk_user_from`, `request_status`) VALUES
-(1, 'buy', 'the sections need new raw material', '0000-00-00 00:00:00', 6, 'Open'),
-(2, 'buy', 'wen need more plastic', '2019-09-25 22:00:00', 6, 'Open'),
+(1, '', '', '2019-09-11 22:00:00', 6, 'Dismissed'),
+(2, 'buy', 'wen need more plastic', '0000-00-00 00:00:00', 6, 'Accepted'),
 (3, 'pay', 'we need 5000€ for the plastic', '2019-09-25 22:00:00', 10, 'Open'),
-(4, 'sale', 'there is a lot of products ', '2019-09-11 22:00:00', 9, 'Open'),
+(4, 'sale', 'there is a lot of products ', '2019-09-24 22:00:00', 9, 'Accepted'),
 (6, 'pay', 'we need a budget for the support', '2019-09-18 22:00:00', 7, 'Open'),
 (11, 'sale', 'efvgesv', '2019-09-17 22:00:00', 6, 'Open'),
 (12, 'sale', 'dfcs', '2019-09-18 22:00:00', 6, 'Open');
@@ -318,14 +330,6 @@ CREATE TABLE `sections` (
   `fk_machine` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `sections`
---
-
-INSERT INTO `sections` (`section_id`, `section_name`, `section_description`, `fk_raw_material_id`, `fk_user_id`, `fk_employee_id`, `fk_machine`) VALUES
-(1, 'Convert', 'Convert raw materials into manufactured materials', 1, 9, 8, 1),
-(2, 'section 2', 'the second section for Metal', 1, 12, 8, 2);
-
 -- --------------------------------------------------------
 
 --
@@ -354,19 +358,21 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `fullname`, `date_of_birth`, `email`, `password`, `telefon`, `address`, `gender`, `status`, `children`, `nationality`, `education`, `date_of_start`, `role`) VALUES
-(2, 'rubaaboissa', '1997-10-17', 'ruba@gmail.com', '123123', '125487875121', 'reinprechtsdorfer strasse. 1050 vienna', 'f', 'single', 'Null', 'Syrien', 'Matura', '2019-09-18 11:53:59', 'user'),
-(5, 'Director', '1988-05-05', 'director@gmail.com', '123123', '0935074175', 'lalagasse wien,1050', 'm', 'Married', 'one', 'Austrian', 'Civil engineer', '2019-09-17 19:09:09', 'director'),
-(6, 'the engineer', '1991-01-03', 'eng@gmail.com', '123123', '0935214785', 'enggasse wien1050', 'f', 'Married', 'two', 'Austrian', 'Compute science engineer', '2019-09-17 19:09:55', 'eng'),
-(7, 'the dealer', '1996-06-14', 'dealer@gmail.com', '123123', '123734562', 'Germany', 'm', 'Married', 'three', 'Austrian', 'Economics', '2019-09-17 19:10:32', 'dealer'),
-(8, 'Worker', '2019-05-14', 'worker@gmail.com', '123123', '09358654785', 'starasse vienna', 'm', 'Married', 'three', 'austrian', 'HTL', '2019-09-14 16:15:46', 'user'),
-(9, 'manager', '2019-02-12', 'manager@gmail.com', '123123', '2347523462', 'Graz', 'f', 'single', 'No Children', 'syrien', 'Bachelor degree ', '2019-09-17 19:11:12', 'manager'),
-(10, 'accountant', '2017-10-18', 'acc@gmail.com', '123123', '234465475', 'Berlin', 'f', 'Married', 'four', 'German', 'Economics Master', '2019-09-17 19:11:57', 'acc'),
-(11, 'technicien', '1997-01-16', 'tech@gmail.com', '123123', '1234566782', 'Sweden ', 'f', 'single', 'No children', 'Sweden', 'IT Bachelor ', '2019-09-17 19:12:46', 'tech'),
-(12, 'Manager2', '1997-09-02', 'manager2@gmail.com', '123123', '0935410601', 'Vienna 1100', 'm', 'single', 'Null', 'Syrian', 'Economics Degree', '2019-09-17 18:51:27', 'manager'),
-(13, 'Isa Abu Isa', '1955-12-18', 'isa@gmail.com', '123123', '0955220829', 'Reinprechtsdorfer StraÃŸe 5/33', 'm', 'Married', 'three', 'Syrian', 'Mechanic Engineer', '0000-00-00 00:00:00', 'user'),
-(14, 'yazan Abu isa', '1995-09-25', 'yazan@gmail.com', '123123', '0935410601', 'Reinprechtsdorfer StraÃŸe 5/33', 'm', 'single', 'one', 'syrien', 'university', '0000-00-00 00:00:00', 'user'),
+(2, 'rubaaboissa', '1997-10-17', 'ruba@gmail.com', '96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e', '125487875121', 'reinprechtsdorfer strasse. 1050 vienna', 'f', 'single', 'Null', 'Syrien', 'Matura', '2019-09-24 13:25:36', 'user'),
+(5, 'Director', '1988-05-05', 'director@gmail.com', '96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e', '0935074175', 'lalagasse wien,1050', 'm', 'Married', 'one', 'Austrian', 'Civil engineer', '2019-09-24 13:40:42', 'director'),
+(6, 'the engineer', '1991-01-03', 'eng@gmail.com', '96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e', '0935214785', 'enggasse wien1050', 'f', 'Married', 'two', 'Austrian', 'Compute science engineer', '2019-09-24 13:40:50', 'eng'),
+(7, 'the dealer', '1996-06-14', 'dealer@gmail.com', '96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e', '123734562', 'Germany', 'm', 'Married', 'three', 'Austrian', 'Economics', '2019-09-24 13:40:56', 'dealer'),
+(8, 'Worker', '2019-05-14', 'worker@gmail.com', '96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e', '09358654785', 'starasse vienna', 'm', 'Married', 'three', 'austrian', 'HTL', '2019-09-24 13:41:12', 'user'),
+(9, 'manager', '2019-02-12', 'manager@gmail.com', '96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e', '2347523462', 'Graz', 'f', 'single', 'No Children', 'syrien', 'Bachelor degree ', '2019-09-24 13:41:05', 'manager'),
+(10, 'accountant', '2017-10-18', 'acc@gmail.com', '96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e', '234465475', 'Berlin', 'f', 'Married', 'four', 'German', 'Economics Master', '2019-09-24 13:41:18', 'acc'),
+(11, 'technicien', '1997-01-16', 'tech@gmail.com', '96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e', '1234566782', 'Sweden ', 'f', 'single', 'No children', 'Sweden', 'IT Bachelor ', '2019-09-24 13:42:52', 'user'),
+(12, 'Manager2', '1997-09-02', 'manager2@gmail.com', '96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e', '0935410601', 'Vienna 1100', 'm', 'single', 'Null', 'Syrian', 'Economics Degree', '2019-09-24 13:42:23', 'manager'),
+(13, 'Isa Abu Isa', '1955-12-18', 'isa@gmail.com', '96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e', '0955220829', 'Reinprechtsdorfer StraÃŸe 5/33', 'm', 'Married', 'three', 'Syrian', 'Mechanic Engineer', '2019-09-24 13:42:15', 'user'),
 (15, 'iyad abuisa', '1988-04-30', 'iyad@gmail.com', '123123', '0999446083', 'Reinprechtsdorfer StraÃŸe 5/33', 'm', 'Married', 'one', 'syrien', 'master', '0000-00-00 00:00:00', 'user'),
-(16, 'Ruba ABU ISA', '2019-09-04', 'user@gmail.com', '96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e', '0935074175', 'Reinprechtsdorfer StraÃŸe 5/33', 'f', 'single', 'three', 'syriean', 'jaeejfb', '0000-00-00 00:00:00', 'user');
+(16, 'Ruba ABU ISA', '2019-09-04', 'user@gmail.com', '96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e', '0935074175', 'Reinprechtsdorfer StraÃŸe 5/33', 'f', 'single', 'three', 'syriean', 'jaeejfb', '0000-00-00 00:00:00', 'user'),
+(17, 'Ruba ABU ISA', '2019-09-11', 'ha@gmail.com', '96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e', '123123123', 'Reinprechtsdorfer StraÃŸe 5/33', 'f', 'Married', 'dfgfdg', 'dfgdfgd', 'dfgdfg', '0000-00-00 00:00:00', 'user'),
+(18, 'Ruba ABU ISA', '0323-02-23', 'haha@gmail.com', '96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e', 'edfgvgedsfgv', 'Reinprechtsdorfer StraÃŸe 5/33', 'f', 'Married', 'erfgvegsf', 'efvgesgf', 'efsgvesg', '0000-00-00 00:00:00', 'user'),
+(19, 'Ruba ABU ISA', '2019-09-10', 'h@gmail.com', '96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e', 'RJZ/JJJJJZ', 'Reinprechtsdorfer StraÃŸe 5/33', 'f', 'Married', 'gtttttttttttg', 'gtgtgtg', 'tgtgt', '0000-00-00 00:00:00', 'user');
 
 --
 -- Indexes for dumped tables
@@ -479,19 +485,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `buy`
 --
 ALTER TABLE `buy`
-  MODIFY `buy_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `buy_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `employee_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `employee_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `employment_app`
 --
 ALTER TABLE `employment_app`
-  MODIFY `employment_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `employment_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `employment_type`
@@ -521,13 +527,13 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `q_message`
 --
 ALTER TABLE `q_message`
-  MODIFY `q_message` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `q_message` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `raw_material`
 --
 ALTER TABLE `raw_material`
-  MODIFY `raw_material_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `raw_material_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `repository`
@@ -557,7 +563,7 @@ ALTER TABLE `sections`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `user_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables
@@ -574,7 +580,7 @@ ALTER TABLE `buy`
 -- Constraints for table `employees`
 --
 ALTER TABLE `employees`
-  ADD CONSTRAINT `employees_ibfk_1` FOREIGN KEY (`fk_user_id`) REFERENCES `users` (`user_id`);
+  ADD CONSTRAINT `employees_ibfk_1` FOREIGN KEY (`fk_user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `employment_app`
@@ -589,7 +595,7 @@ ALTER TABLE `employment_app`
 ALTER TABLE `repository`
   ADD CONSTRAINT `repository_ibfk_1` FOREIGN KEY (`fk_user_owner`) REFERENCES `users` (`user_id`),
   ADD CONSTRAINT `repository_ibfk_2` FOREIGN KEY (`fk_product_id`) REFERENCES `products` (`product_id`),
-  ADD CONSTRAINT `repository_ibfk_3` FOREIGN KEY (`fk_employee_id`) REFERENCES `employees` (`employee_id`);
+  ADD CONSTRAINT `repository_ibfk_3` FOREIGN KEY (`fk_employee_id`) REFERENCES `employees` (`employee_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `requests`
@@ -608,11 +614,11 @@ ALTER TABLE `salary`
 -- Constraints for table `sections`
 --
 ALTER TABLE `sections`
-  ADD CONSTRAINT `sections_ibfk_1` FOREIGN KEY (`fk_user_id`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `sections_ibfk_2` FOREIGN KEY (`fk_raw_material_id`) REFERENCES `raw_material` (`raw_material_id`),
-  ADD CONSTRAINT `sections_ibfk_3` FOREIGN KEY (`fk_user_id`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `sections_ibfk_4` FOREIGN KEY (`fk_machine`) REFERENCES `machine` (`machine_id`),
-  ADD CONSTRAINT `sections_ibfk_5` FOREIGN KEY (`fk_employee_id`) REFERENCES `employees` (`employee_id`);
+  ADD CONSTRAINT `sections_ibfk_1` FOREIGN KEY (`fk_user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `sections_ibfk_2` FOREIGN KEY (`fk_raw_material_id`) REFERENCES `raw_material` (`raw_material_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `sections_ibfk_3` FOREIGN KEY (`fk_user_id`) REFERENCES `users` (`user_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `sections_ibfk_4` FOREIGN KEY (`fk_machine`) REFERENCES `machine` (`machine_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `sections_ibfk_5` FOREIGN KEY (`fk_employee_id`) REFERENCES `employees` (`employee_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

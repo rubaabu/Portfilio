@@ -45,7 +45,7 @@ session_start();
                   <h3>                                     <?php echo $row['repository_name'];?></h3>
                   <span>Description: </span>                    <?php echo $row['repository_description'];?><br>
                   <span>Owner: </span>                          <?php echo $row['fullname'];?><br>
-                  <span>employees: </span>                      <?php echo $row['employee_id'];?><br>
+                  <span>employees: </span>                      <?php echo $row['employee_status'];?><br>
                   <span>Products: </span>                       <?php echo $row['product_name'];?><br>
     
                   </div>

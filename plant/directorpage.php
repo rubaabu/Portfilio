@@ -1,5 +1,5 @@
 <?php 
-
+ob_start();
 session_start();
 require 'db.php';
 
@@ -51,7 +51,12 @@ if( !isset($_SESSION['user' ]) && !isset($_SESSION['director']) && !isset($_SESS
    .body{
        background-color: #d0ecf0
    }
-   
+   .h1{
+      color: #176d81;
+      text-align: center;
+     
+      
+   }
 </style>
 </head>
 <body class="body">
@@ -59,7 +64,16 @@ if( !isset($_SESSION['user' ]) && !isset($_SESSION['director']) && !isset($_SESS
 <?php require 'nav.php'; ?>
 
 
-
+<?php
+$sql ="SELECT fullname FROM users WHERE user_id=".$var;
+$result = mysqli_query($conn,$sql);
+if (!$result) { 
+   printf("Error: %s\n", mysqli_error($conn));
+   exit();
+}
+  $userRow=mysqli_fetch_array($result, MYSQLI_ASSOC);
+  ?>
+  <h1 class="h1"><?php echo $userRow['fullname']; ?></h1>
 <br>
 
 
@@ -142,7 +156,7 @@ if( !isset($_SESSION['user' ]) && !isset($_SESSION['director']) && !isset($_SESS
       <div class="col-md-6">
          <div class="card flex-md-row mb-4 shadow-sm h-md-250">
             <div class="card-body d-flex flex-column align-items-start">
-               <h3><strong class="d-inline-block mb-2 text-info">Requests</strong></h3>
+               <h3><strong class="d-inline-block mb-2 text-info">Request for director approval</strong></h3>
                
                <div class="mb-1 text-muted small">Nov 12</div>
                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
@@ -153,6 +167,21 @@ if( !isset($_SESSION['user' ]) && !isset($_SESSION['director']) && !isset($_SESS
       </div>
       </div>
 
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+              <div class="card-body d-flex flex-column align-items-start">
+                <h3> <strong class="d-inline-block mb-2 text-info">Raw Materials</strong></h3>
+                
+                <div class="mb-1 text-muted small">Nov 12</div>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a class="btn btn-info btn-sm" role="button" href="rawMat.php">View</a>
+              </div>
+              <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="img/raw.jpg" style="width: 200px; height: 250px;">
+          </div>
+        </div> 
+         </div>
+        </div>
 
 
 

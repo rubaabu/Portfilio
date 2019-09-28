@@ -47,12 +47,29 @@ if( !isset($_SESSION['user' ]) && !isset($_SESSION['director']) && !isset($_SESS
    .ru{
     margin-bottom: 100px;
    }
+   .h1{
+      color: #176d81;
+      text-align: center;
+     
+      
+   }
 </style>
    </head>
    <body class="body">
    <?php require 'nav.php' ?>
-   
+   <?php
+$sql ="SELECT fullname FROM users WHERE user_id=".$var;
+$result = mysqli_query($conn,$sql);
+if (!$result) { 
+   printf("Error: %s\n", mysqli_error($conn));
+   exit();
+}
+  $userRow=mysqli_fetch_array($result, MYSQLI_ASSOC);
+  ?>
+  <h1 class="h1"><?php echo $userRow['fullname']; ?></h1>
 <br>
+
+
   
 
 

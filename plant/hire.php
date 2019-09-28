@@ -87,7 +87,7 @@ session_start();
                                 <input type="radio" name="status" value="technicien" /><br >
 
                             </div> <button type ="submit" class='btn btn-info'name="apply">Hire</button>
-                            
+                             </form>
                             </div>
                             </div>
                             </div>
@@ -96,7 +96,7 @@ session_start();
     
 
    
-    </form>
+   
 
     <?php require 'footer.php'; ?>
 

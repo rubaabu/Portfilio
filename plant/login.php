@@ -66,6 +66,11 @@ if(isset($_POST['login'])) {
             $_SESSION['dealer'] = $row['user_id'];
          header( "Location: dealerpage.php");
 
+          }  else if($row["role"] == "acc"){
+
+            $_SESSION['acc'] = $row['user_id'];
+         header( "Location: accPage.php");
+
           } else {
               
             $_SESSION['user'] = $row['user_id'];

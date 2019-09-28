@@ -36,6 +36,9 @@ require 'db.php';
   } else if(isset($_SESSION['dealer'])){
     $var = $_SESSION['dealer'];
 
+  } else if(isset($_SESSION['acc'])){
+    $var = $_SESSION['acc'];
+
   } else if(isset($_SESSION['eng'])){
     $var = $_SESSION['eng'];
 

@@ -41,6 +41,7 @@ session_start();
                 <span class="card-text">Quantity:  </span> <?php echo $row['product_quantity']; ?><br>
                 <span class="card-text">date:  </span><?php echo  $row['product_date']; ?><br>
                 <span class="card-text" type="text">description:  </span><?php echo $row['product_description']; ?><br>
+                <span class="card-text" type="text">Price:  </span><?php echo $row['product_price']; ?><br>
                 
             </div>
         </div>

@@ -3,6 +3,42 @@ require '../db.php';
 ob_start();
 session_start();
 
+
+
+if( !isset($_SESSION['user' ]) && !isset($_SESSION['director']) && !isset($_SESSION['eng']) && !isset($_SESSION['dealer']) ) {
+    header("Location: login.php");
+    exit;
+    }
+
+
+   if(isset($_SESSION['director'])){
+      
+     $var = $_SESSION['director'];
+
+   } else if (isset($_SESSION['eng'])){
+        
+    $var = $_SESSION['eng'];
+
+   }else if (isset($_SESSION['dealer'])){
+    
+    $var = $_SESSION['dealer'];
+
+}
+  
+
+   //select the user that he is logged in
+   $result=mysqli_query($conn, "SELECT * FROM users WHERE user_id=".$var);
+
+   //to know what is the proplem if there are one
+   if (!$result) { 
+    printf("Error: %s\n", mysqli_error($conn));
+    exit();
+}
+   $userRow=mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+
+
+
 if(isset($_GET['id'])) {
     $id = $_GET['id'];
 
@@ -42,8 +78,22 @@ if(isset($_GET['id'])) {
 
 <body class="body">
 
-<?php require '../nav.php'; ?>
-<a href="../requests.php"><button type='button' class='btn btn-info'>back</button></a>
+
+<?php if(isset($_SESSION['director'])){?>
+    <a href="../requests.php"><button type='button' class='btn btn-info'>back</button></a>
+<?php }
+?>
+
+<?php if(isset($_SESSION['dealer'])){?>
+    <a href="../requestsEng.php"><button type='button' class='btn btn-info'>back</button></a>
+<?php }
+?>
+
+
+<?php if(isset($_SESSION['eng'])){?>
+    <a href="../requestMan.php"><button type='button' class='btn btn-info'>back</button></a>
+<?php }
+?>
     
 <div id="ru">
  <div class="container">
@@ -54,36 +104,18 @@ if(isset($_GET['id'])) {
                     <div id="ru-box" class="col-md-12">
          
                           <form id="ru-form" class="form" method="post" action="a_acceptRequest.php">
-                         <h3 style=" color: #d8dfe2" class="text-center ">Accept requests</h3>
+                         <h3 style=" color: #d8dfe2" class="text-center ">Respond to the requests</h3>
 
                 <div class="form-group">
-                <label for="request_type"style=" color: #d8dfe2" >Type</label>
-                    <select class="form-control" name="request_type" value="<?php echo $data['request_type'];?>">
-                    <option value="buy" >buy</option>
-                    <option value="sale" >sale</option>
-                    <option value="pay" >pay</option>
-
-                    </select>
+                <label style=" color: #d8dfe2; " for="request_type">Type:</label>
                
+            <h3 style=" color: #d8dfe2;">  <?php echo $data['request_type'];?></h3> 
                 </div>
 
-                <div class="form-group">
-                <label for="request_message">Message</label>
-                    <input class="form-control" type="text" name="request_message" value="<?php echo $data['request_message'] ?>">
-                    <div class="form-group">
-                <label for="request_date">Date:</label>
-                    <input class="form-control" type="date" name="request_date" value="<?php echo $data['request_date'] ?>">
-                </div>
-                   
-
-                    <div class="form-group">
-                <label for="request_from">From</label>
-                     <input class="form-control" type="text" name="request_from" value="<?php echo $data['fk_user_from'] ?>">
-                </div>
-                    
-
+            
+                
                      <div class="form-group">
-                <label  for="request_status">Status</label>
+                <label style=" color: #d8dfe2" for="request_status">Status</label>
                 <select  class="form-control" name="request_status" value="<?php echo $data['request_status']; ?>" >
                     <option value="Open" >Open</option>
                     <option value="Accepted" >Accepted</option>
@@ -91,7 +123,12 @@ if(isset($_GET['id'])) {
 
                     </select><br >
                 </div>
-                   
+
+
+                    <div class="form-group">
+                <label  for="request_date">Date:</label>
+                    <input class="form-control" type="date" name="request_date" value="<?php echo $data['request_date'] ?>">
+                </div>
 
                     <div class="form-group">
                <input type= "hidden" name= "request_id" class="btn btn-info btn-md" value= "<?php echo $data['request_id']?>" />

@@ -52,9 +52,8 @@ if($_POST['message']==""){
     $error = $employ->assembleError($error,"please Write your message","message");
 }
 
-if($_POST['file']==""){
-    $error = $employ->assembleError($error,"please choose a file","file");
-}
+
+
 
 if(!$error){
 
@@ -62,7 +61,7 @@ if(!$error){
     
         'fk_type_id'            =>$_POST['type'],
         'employment_message'    =>$_POST['message'],
-        'employment_file'       =>$_POST['file'],
+     
         'fk_user_from'          =>$_SESSION['user'],
 
     );

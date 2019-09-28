@@ -49,6 +49,9 @@ $sql = "SELECT * FROM requests
                 <span>Type:</span><?php echo $row['request_type'];?><br>
                 <span>message:</span><?php echo $row['request_message'];?><br>
                 <span>Date:</span><?php echo $row['request_date'];?><br>
+                <?php echo "
+                <a href='action/acceptRequest.php?id=" .$row['request_id']."'><button type='button' class='btn btn-info'>Reply</button></a>"
+                  ;  ?>
   </div>
         </div>
                 <br>

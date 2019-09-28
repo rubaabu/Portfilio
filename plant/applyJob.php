@@ -39,7 +39,7 @@ session_start();
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
 
-                    <form id="login-form" class="form" action="action/employmentApp.php" method= "post" >
+                    <form id="login-form" class="form" action="action/employmentApp.php" method= "post" enctype="multipart/form-data">
 
                     <h3 style=" color: #d8dfe2" class="text-center ">Apply for a job</h3>
 
@@ -71,10 +71,8 @@ session_start();
                                     <input type="text" name="message"  class="form-control">
                         </div>
 
-                        <div class="form-group">
-                                <input  type="file" name="file" /><br >
-                        </div>            
-                                    <input type="submit" name="apply" class="btn btn-info btn-md" value="Send">
+                       
+                                <input type="submit" name="apply" class="btn btn-info btn-md" value="upload">
                     </form>
                     </div>            
                 </div>            

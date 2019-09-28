@@ -1,5 +1,5 @@
  <!-- if the session is set for this roles theyy will see this-->
- <?php if(isset($_SESSION['director']) || isset($_SESSION['eng']) || isset($_SESSION['dealer']) || isset($_SESSION['manager']) ) { ?>
+ <?php if(isset($_SESSION['director']) || isset($_SESSION['eng']) || isset($_SESSION['dealer']) || isset($_SESSION['manager']) || isset($_SESSION['acc']) ) { ?>
  
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" style="color:#17a2b8" href="userprofile.php">My profile</a>
@@ -12,7 +12,7 @@
       <li class="nav-item active">
       <a class="nav-link " href="qmessage.php">Q messages</a>      
       </li>
-      <?php if(isset($_SESSION['eng']) || isset($_SESSION['dealer']) || isset($_SESSION['manager']) ) { ?>
+      <?php if(isset($_SESSION['eng']) || isset($_SESSION['dealer']) || isset($_SESSION['manager']) || isset($_SESSION['acc'])) { ?>
 
       <li class="nav-item active">
         <a class="nav-link" href="sendRQ.php">Send request</a>

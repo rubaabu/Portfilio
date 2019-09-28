@@ -54,9 +54,9 @@ if(isset($_POST['btn-signup'])) {
     $address = strip_tags($address);
     $address = htmlspecialchars($address);
 
-    $gender = trim($_POST['gender']);
+    // $gender = trim($_POST['gender']);
 
-    $status = trim($_POST['status']);
+    // $status = trim($_POST['status']);
 
     $children = trim($_POST['children']);
     $children = strip_tags($children);
@@ -340,17 +340,17 @@ a {
                            
 						</div>
 							
-                        <div>
+                        <div class="form-group">
                             <label >Status:</label><br>
-                            <label for="status">Married</label>
+                            <label for="status" value="<?php echo $status; ?>">Married</label>
                             <input type="radio" name ="status" value="Married" />
 
-                            <label for="status">Single</label>            
+                            <label for="status" value="<?php echo $status; ?>">Single</label>            
                             <input type="radio" name ="status" value="single" /><br>
 
                             <span class="span"> <?php   echo  $statusError; ?> </span ><br>
                         </div>
-                         <div>
+                         <div class="form-group">
                                      <label>Gender:</label><br>
                                     <label name ="gender" for="gender">Female</label>
                                     <input type="radio" name ="gender" value="f" />
