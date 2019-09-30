@@ -3,21 +3,25 @@ require '../db.php';
 ob_start();
 session_start();
 require '../function.php';
-if( !isset($_SESSION['user' ]) && !isset($_SESSION['director']) && !isset($_SESSION['eng']) && !isset($_SESSION['dealer']) ) {
+if( !isset($_SESSION['user' ]) && !isset($_SESSION['director']) && !isset($_SESSION['eng']) && !isset($_SESSION['dealer']) && !isset($_SESSION['acc'])) {
     header("Location: login.php");
     exit;
     }
 
 
-   if(isset($_SESSION['director'])){
+   if(isset($_SESSION['acc'])){
       
-     $var = $_SESSION['director'];
+     $var = $_SESSION['acc'];
 
    } else if (isset($_SESSION['eng'])){
         header('Location: engpage.php');
     $var = $_SESSION['eng'];
 
-   }else if (isset($_SESSION['dealer'])){
+   }else if (isset($_SESSION['director'])){
+    header('Location: directorpage.php');
+$var = $_SESSION['director'];
+
+} else if (isset($_SESSION['dealer'])){
     header('Location: dealerpage.php');
     $var = $_SESSION['dealer'];
 
@@ -57,13 +61,16 @@ if($_POST['amount']==""){
 if(!$error){
 
     $salary_data = array(
-        'fk_user_from'  =>$_SESSION['director'],
+        'fk_user_from'  =>$_SESSION['acc'],
         'fk_user_to'    =>$_POST['fullname'],
         'salary_amount' =>$_POST['amount']
         
     );
 
     echo $salary->paysalary($salary_data);
-
+    echo "Successfully paied";
+}
+ else {
+        echo "Unsuccessful Insertion";
 }
 echo $error;

@@ -54,10 +54,6 @@ if($_POST['message']==""){
     $error = $request->assembleError($error,"please choose a message","message");
 }
 
-if($_POST['date']==""){
-    $error = $request->assembleError($error,"please choose a date","date");
-
-}
 if($_POST['status']==""){
     $error = $request->assembleError($error,"please choose a status","status");
 
@@ -68,11 +64,14 @@ if(!$error){
         'fk_user_from'       =>$var,
         'request_type'       =>$_POST['type'],
         'request_message'    =>$_POST['message'],
-        'request_date'       =>$_POST['date'],
+        
         'request_status'     =>$_POST['status']
     );
 
     echo $request->sendRequest($request_data);
-
+ echo "Successfully Inserted new Request";
+}
+ else {
+        echo "Unsuccessful Insertion";
 }
 echo $error;

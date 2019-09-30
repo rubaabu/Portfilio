@@ -23,6 +23,10 @@ if(!$error){
     );
 
     echo $hiring->hiring($hiring_data);
-
+    echo "Successfully Inserted employeer";
 }
+ else {
+        echo "Unsuccessful Insertion";
+}
+
 echo $error;

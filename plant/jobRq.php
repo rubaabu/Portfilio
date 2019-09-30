@@ -50,7 +50,7 @@ $sql = "SELECT * FROM employment_app
                 <span class="card-title">From:</span><?php echo $row['fullname'];?><br>
                 <span class="card-text">Type:</span><?php echo $row['type_name'];?><br>
                 <span class="card-text">message:</span><?php echo $row['employment_message'];?><br>
-                <span class="card-text">file:</span><?php echo $row['employment_file'];?><br>
+            
                 <span class="card-text">Date:</span><?php echo $row['employment_date'];?><br>
              
     

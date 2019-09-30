@@ -39,34 +39,40 @@ session_start();
             <div id="ru-row" class="row justify-content-center align-items-center">
                 <div id="ru-column" class="col-md-6">
                     <div id="ru-box" class="col-md-12">
-                        <form id="ru-form" class="form" action="action/sendRequest.php" method="post">
+                        <form class="form" id="myForm" action="action/sendRequest.php" method="post">
                             <h3 style=" color: #d8dfe2" class="text-center ">Send request</h3>
                             <div class="form-group">
                                 <label for="type" style=" color: #71adb5">Type</label><br>
                                
                                 <select class="form-control" name="type" >
+                                    <option  selected="selected">Choose type</option>
                                     <option  value="sale">Sale</option>
                                     <option  value="pay">pay</option>
                                     <option  value="buy">buy</option>
                                     </select>
                             </div>
                             <div class="form-group">
-                                <label for="message" style=" color: #71adb5">Message:</label><br>
-                                <input type="text" name="message"  class="form-control">
+                                <p  style=" color: #71adb5">Message:</p><br>
+                                <input type="text" id="message" name="message"  class="form-control">
                             </div>
                             <div class="form-group">
                                     <label for="status" style=" color: #71adb5">Status</label>
                                     <select name="status" class="form-control" >
+                                    <option  selected="selected">Choose Status</option>
                                     <option value="Open">Open</option>
                                     <option value="Accepted">Accepted</option>
                                     <option value="Dismissed">Dismissed</option>
                                     </select><br >
                                 
-                                <input type="submit" name="apply" class="btn btn-info btn-md" value="Send">
+                        
+                             <button class="btn btn-info" id="submit" type="submit">send</button>
+
+                                
                             </div>
 
                             
                         </form>
+                        <span id="message"></span>
                     </div>
                 </div>
             </div>
@@ -75,5 +81,25 @@ session_start();
     
     <?php require 'footer.php'; ?>
 
+    <script>
+        $("#submit").click( function() { // when submit button is clicked
+        $.post( $( "#myForm").attr("action"), // fetch the URL from myForm
+                $("#myForm :input").serializeArray(), // serialize the data from the input fields, creating an array of objects (name and value pairs)
+                function(info){ $("#message" ).html(info); // append the response to element with id of message
+        });
+        clearInput(); // Call the customized clearInput()
+        });
+
+        $("#myForm" ).submit( function() {
+        return  false;        // do not redirect after submit is clicked
+        });
+
+        function clearInput() { // clear all input fields from #myForm
+            $ ("#myForm :input").each( function() {
+                    $(this).val('');
+            });
+        }
+  </script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" ></script> 
 </body>
 </html>

@@ -94,7 +94,7 @@ if (!$result) {
                 
                 <div class="mb-1 text-muted small">Nov 12</div>
                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a class="btn btn-info btn-sm" role="button" href="paysalary.php">View</a>
+                <a class="btn btn-info btn-sm" role="button" href="pay_salary.php">View</a>
               </div>
               <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="img/pay.jpg" style="width: 200px; height: 250px;">
           </div>

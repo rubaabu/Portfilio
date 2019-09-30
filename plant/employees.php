@@ -39,8 +39,8 @@ session_start();
         <div class="card">
             <div class="card-body">
                           
-              <h3 style="color: #176d81" class="card-title">Name:                               <?php echo $row['fullname'];?></h3>
-              <span class="card-text">Status: </span>                   <?php echo $row['employee_status'];?><br>
+              <h3 style="color: #176d81" class="card-title">Name:        <?php echo $row['fullname'];?></h3>
+              <span class="card-text">Status: </span>                    <?php echo $row['employee_status'];?><br>
               <span class="card-text">Date: </span>                      <?php echo $row['employee_date'];?><br>
               <?php echo " <a href='action/deleteEmp.php?id=" .$row['employee_id']."'><button type='button' class='btn btn-info'>Delete</button></a>"
                 ;?>

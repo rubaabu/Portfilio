@@ -61,7 +61,10 @@ if($error==""){
     );
 
     echo $buy->userOrder($buy_order);
-
+    echo "Success";
+}
+ else {
+        echo "Unsuccessful Insertion";
 
 } 
 

@@ -41,7 +41,7 @@ session_start();
             <div id="ru-row" class="row justify-content-center align-items-center">
                 <div id="ru-column" class="col-md-6">
                     <div id="ru-box" class="col-md-12">
-                         <form id="ru-form" class="form" action="action/hiring.php" method= "post" >
+                         <form id="myForm" class="form" action="action/hiring.php" method= "post" >
                          <h3 style=" color: #d8dfe2" class="text-center ">Hire more people</h3>
 
                          <div class="form-group">
@@ -86,7 +86,12 @@ session_start();
                                 <label style=" color: #71adb5" for="status">technicien</label>
                                 <input type="radio" name="status" value="technicien" /><br >
 
-                            </div> <button type ="submit" class='btn btn-info'name="apply">Hire</button>
+                            </div> <button type ="submit" id="submit" class='btn btn-info'name="apply">Hire</button>
+                            
+ <span id="message"></span>
+<script src="action/ajax.js"  type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" ></script> 
+
                              </form>
                             </div>
                             </div>

@@ -103,7 +103,7 @@ if(isset($_GET['id'])) {
                 <div id="ru-column" class="col-md-6">
                     <div id="ru-box" class="col-md-12">
          
-                          <form id="ru-form" class="form" method="post" action="a_acceptRequest.php">
+                          <form id="myForm" class="form" method="post" action="a_acceptRequest.php">
                          <h3 style=" color: #d8dfe2" class="text-center ">Respond to the requests</h3>
 
                 <div class="form-group">
@@ -125,17 +125,17 @@ if(isset($_GET['id'])) {
                 </div>
 
 
-                    <div class="form-group">
-                <label  for="request_date">Date:</label>
-                    <input class="form-control" type="date" name="request_date" value="<?php echo $data['request_date'] ?>">
-                </div>
+                    
 
                     <div class="form-group">
                <input type= "hidden" name= "request_id" class="btn btn-info btn-md" value= "<?php echo $data['request_id']?>" />
-               <button  type= "submit" class="btn btn-info btn-md" >Save Changes</button >
+               <button  type= "submit" id="submit" class="btn btn-info btn-md" >Save Changes</button >
                </div>
-              
-              
+
+       
+              <span id="message"></span>
+              <script src="ajax.js"  type="text/javascript"></script>
+              <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" ></script> 
           
                </div>
                </div>
@@ -145,7 +145,12 @@ if(isset($_GET['id'])) {
 
 
             </form>
+            
+
+
     <?php require '../footer.php'; ?>
+
+
             
     </body>
     </html>

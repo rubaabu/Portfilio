@@ -428,8 +428,8 @@ echo  $errMSG; ?>
       <strong  style ="color: #71adb5; font-size: 10px" >email: user@gmail.com + manager@gmail.com <br> password: 123123</strong><hr >
       <strong style=" color: #71adb5; font-size: 10px" >as director + dealer:</strong><br>
       <strong  style ="color: #71adb5; font-size: 10px" >email: director@gmail.com + dealer@gmail.com<br> password: 123123</strong><hr >
-      <strong style=" color: #71adb5; font-size: 10px" >as engineer + accountant:</strong><br>
-      <strong  style ="color: #71adb5; font-size: 10px" >email: eng@gmail.com + acc@gmail.com<br> password: 123123</strong>
+      <strong style=" color: #71adb5; font-size: 10px" >as engineer + accountant + accountant:</strong><br>
+      <strong  style ="color: #71adb5; font-size: 10px" >email: eng@gmail.com + acc@gmail.com + acc@gmail.com<br> password: 123123</strong>
 
     
     </div>

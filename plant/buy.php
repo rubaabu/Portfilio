@@ -46,7 +46,7 @@ session_start();
                 <div id="ru-column" class="col-md-6">
                     <div id="ru-box" class="col-md-12">
 
-                        <form id="ru-form" class="form" action="action/userbuy.php" method= "post" >
+                        <form id="myForm" class="form" action="action/userbuy.php" method= "post" >
                              <h3 style=" color: #d8dfe2" class="text-center ">Order your product</h3>
 
                                 <div class="form-group">
@@ -54,10 +54,7 @@ session_start();
                                     <input type="text" name="message"  class="form-control">
                                 </div>
 
-                                <div class="form-group">
-                                <label for="date" style=" color: #71adb5">Date:</label><br>
-                                <input type="date" name="date" class="form-control" /><br >
-                                </div>
+                                
                                 <div class="form-group">
                                         <label for="status" style=" color: #71adb5">Status</label>
                                         <select name="product_name" class="form-control" >
@@ -80,10 +77,13 @@ session_start();
                                             ?>
     
                                             </select><br>
-                                    <input type="submit" name="send" class="btn btn-info btn-md" value="Send">
+                                    <button type="submit" id="submit" name="send" class="btn btn-info btn-md" value="Send">Buy</button>
 
                                     </div>
-    
+      <span id="message"></span>
+        <script src="action/ajax.js"  type="text/javascript"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" ></script> 
+
 
                                  </form>
                     </div>
