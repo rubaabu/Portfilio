@@ -1,9 +1,5 @@
  <?php 
-ob_start();
-session_start(); //start a new session or continue the previous
-if(isset($_SESSION['user'])!=""){ 
-header("Location: home.php ");
-}
+
 include_once 'db.php';
 $error = false;
 
